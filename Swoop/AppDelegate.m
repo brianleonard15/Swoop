@@ -7,6 +7,7 @@
 //
 
 #import "AppDelegate.h"
+#import <Quickblox/Quickblox.h>
 
 @interface AppDelegate ()
 
@@ -17,6 +18,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    // Set QuickBlox credentials
+    //
+    [QBApplication sharedApplication].applicationId = 18124;
+    [QBConnection registerServiceKey:@"RpuP8gbgbRLf3EH"];
+    [QBConnection registerServiceSecret:@"RZSMHBryBDuaMpm"];
+    [QBSettings setAccountKey:@"ESNqqzHrGdWb3iwapocg"];
     return YES;
 }
 

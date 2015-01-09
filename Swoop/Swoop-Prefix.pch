@@ -1,0 +1,24 @@
+//
+//  Swoop-Prefix.pch
+//  Swoop
+//
+//  Created by Brian on 1/9/15.
+//  Copyright (c) 2015 Brian Leonard. All rights reserved.
+//
+
+#ifndef Swoop_Swoop_Prefix_pch
+#define Swoop_Swoop_Prefix_pch
+
+// Include any system framework and library headers here that should be included in all compilation units.
+// You will also need to set the Prefix Header build setting of one or more of your targets to reference this file.
+
+#ifdef __OBJC__
+#import <UIKit/UIKit.h>
+#import <Foundation/Foundation.h>
+#import <MobileCoreServices/MobileCoreServices.h>
+#import <SystemConfiguration/SystemConfiguration.h>
+#import <Quickblox/Quickblox.h>
+
+#endif
+
+#endif

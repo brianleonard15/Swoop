@@ -9,11 +9,29 @@
 /* Begin PBXBuildFile section */
 		D71537CC1A55367F00E24734 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D71537CB1A55367F00E24734 /* main.m */; };
 		D71537CF1A55367F00E24734 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D71537CE1A55367F00E24734 /* AppDelegate.m */; };
-		D71537D21A55367F00E24734 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71537D11A55367F00E24734 /* ViewController.m */; };
+		D71537D21A55367F00E24734 /* SchoolController.m in Sources */ = {isa = PBXBuildFile; fileRef = D71537D11A55367F00E24734 /* SchoolController.m */; };
 		D71537D51A55367F00E24734 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D71537D31A55367F00E24734 /* Main.storyboard */; };
 		D71537D71A55367F00E24734 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71537D61A55367F00E24734 /* Images.xcassets */; };
 		D71537DA1A55367F00E24734 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71537D81A55367F00E24734 /* LaunchScreen.xib */; };
 		D71537E61A55368000E24734 /* SwoopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D71537E51A55368000E24734 /* SwoopTests.m */; };
+		D748172C1A603683004DE98D /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748172B1A603683004DE98D /* Quickblox.framework */; };
+		D748172F1A60371F004DE98D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748172E1A60371F004DE98D /* CFNetwork.framework */; };
+		D74817311A60372D004DE98D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817301A60372D004DE98D /* SystemConfiguration.framework */; };
+		D74817331A603733004DE98D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817321A603732004DE98D /* MobileCoreServices.framework */; };
+		D74817351A60373C004DE98D /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817341A60373C004DE98D /* CoreGraphics.framework */; };
+		D74817371A603741004DE98D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817361A603741004DE98D /* CoreLocation.framework */; };
+		D74817391A603745004DE98D /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817381A603745004DE98D /* CoreData.framework */; };
+		D748173B1A603750004DE98D /* AudioToolbox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748173A1A603750004DE98D /* AudioToolbox.framework */; };
+		D748173D1A603754004DE98D /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748173C1A603754004DE98D /* CoreMedia.framework */; };
+		D748173F1A60375E004DE98D /* Accelerate.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748173E1A60375E004DE98D /* Accelerate.framework */; };
+		D74817411A603766004DE98D /* CoreVideo.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817401A603766004DE98D /* CoreVideo.framework */; };
+		D74817431A60376B004DE98D /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817421A60376B004DE98D /* AVFoundation.framework */; };
+		D74817451A603772004DE98D /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817441A603772004DE98D /* QuartzCore.framework */; };
+		D74817471A603777004DE98D /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817461A603776004DE98D /* Security.framework */; };
+		D74817491A603780004DE98D /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817481A603780004DE98D /* libz.dylib */; };
+		D748174B1A60378B004DE98D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D748174A1A60378B004DE98D /* libresolv.dylib */; };
+		D748174D1A6037A9004DE98D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D748174C1A6037A9004DE98D /* libxml2.dylib */; };
+		D74817501A604F26004DE98D /* colleges.plist in Resources */ = {isa = PBXBuildFile; fileRef = D748174F1A604F26004DE98D /* colleges.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -32,14 +50,33 @@
 		D71537CB1A55367F00E24734 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		D71537CD1A55367F00E24734 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		D71537CE1A55367F00E24734 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		D71537D01A55367F00E24734 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		D71537D11A55367F00E24734 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		D71537D01A55367F00E24734 /* SchoolController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SchoolController.h; sourceTree = "<group>"; };
+		D71537D11A55367F00E24734 /* SchoolController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SchoolController.m; sourceTree = "<group>"; };
 		D71537D41A55367F00E24734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		D71537D61A55367F00E24734 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Images.xcassets; sourceTree = "<group>"; };
 		D71537D91A55367F00E24734 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = Base; path = Base.lproj/LaunchScreen.xib; sourceTree = "<group>"; };
 		D71537DF1A55368000E24734 /* SwoopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwoopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D71537E41A55368000E24734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D71537E51A55368000E24734 /* SwoopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwoopTests.m; sourceTree = "<group>"; };
+		D748172B1A603683004DE98D /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
+		D748172E1A60371F004DE98D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
+		D74817301A60372D004DE98D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
+		D74817321A603732004DE98D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
+		D74817341A60373C004DE98D /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
+		D74817361A603741004DE98D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		D74817381A603745004DE98D /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		D748173A1A603750004DE98D /* AudioToolbox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AudioToolbox.framework; path = System/Library/Frameworks/AudioToolbox.framework; sourceTree = SDKROOT; };
+		D748173C1A603754004DE98D /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
+		D748173E1A60375E004DE98D /* Accelerate.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Accelerate.framework; path = System/Library/Frameworks/Accelerate.framework; sourceTree = SDKROOT; };
+		D74817401A603766004DE98D /* CoreVideo.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreVideo.framework; path = System/Library/Frameworks/CoreVideo.framework; sourceTree = SDKROOT; };
+		D74817421A60376B004DE98D /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		D74817441A603772004DE98D /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		D74817461A603776004DE98D /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		D74817481A603780004DE98D /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
+		D748174A1A60378B004DE98D /* libresolv.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libresolv.dylib; path = usr/lib/libresolv.dylib; sourceTree = SDKROOT; };
+		D748174C1A6037A9004DE98D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
+		D748174E1A6042C9004DE98D /* Swoop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swoop-Prefix.pch"; sourceTree = "<group>"; };
+		D748174F1A604F26004DE98D /* colleges.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = colleges.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -47,6 +84,23 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D748174D1A6037A9004DE98D /* libxml2.dylib in Frameworks */,
+				D748174B1A60378B004DE98D /* libresolv.dylib in Frameworks */,
+				D74817491A603780004DE98D /* libz.dylib in Frameworks */,
+				D74817471A603777004DE98D /* Security.framework in Frameworks */,
+				D74817451A603772004DE98D /* QuartzCore.framework in Frameworks */,
+				D74817431A60376B004DE98D /* AVFoundation.framework in Frameworks */,
+				D74817411A603766004DE98D /* CoreVideo.framework in Frameworks */,
+				D748173F1A60375E004DE98D /* Accelerate.framework in Frameworks */,
+				D748173D1A603754004DE98D /* CoreMedia.framework in Frameworks */,
+				D748173B1A603750004DE98D /* AudioToolbox.framework in Frameworks */,
+				D74817391A603745004DE98D /* CoreData.framework in Frameworks */,
+				D74817371A603741004DE98D /* CoreLocation.framework in Frameworks */,
+				D74817351A60373C004DE98D /* CoreGraphics.framework in Frameworks */,
+				D74817331A603733004DE98D /* MobileCoreServices.framework in Frameworks */,
+				D74817311A60372D004DE98D /* SystemConfiguration.framework in Frameworks */,
+				D748172F1A60371F004DE98D /* CFNetwork.framework in Frameworks */,
+				D748172C1A603683004DE98D /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -66,6 +120,7 @@
 				D71537C81A55367F00E24734 /* Swoop */,
 				D71537E21A55368000E24734 /* SwoopTests */,
 				D71537C71A55367F00E24734 /* Products */,
+				D748172D1A60368E004DE98D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -83,8 +138,8 @@
 			children = (
 				D71537CD1A55367F00E24734 /* AppDelegate.h */,
 				D71537CE1A55367F00E24734 /* AppDelegate.m */,
-				D71537D01A55367F00E24734 /* ViewController.h */,
-				D71537D11A55367F00E24734 /* ViewController.m */,
+				D71537D01A55367F00E24734 /* SchoolController.h */,
+				D71537D11A55367F00E24734 /* SchoolController.m */,
 				D71537D31A55367F00E24734 /* Main.storyboard */,
 				D71537D61A55367F00E24734 /* Images.xcassets */,
 				D71537D81A55367F00E24734 /* LaunchScreen.xib */,
@@ -96,8 +151,10 @@
 		D71537C91A55367F00E24734 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D748174F1A604F26004DE98D /* colleges.plist */,
 				D71537CA1A55367F00E24734 /* Info.plist */,
 				D71537CB1A55367F00E24734 /* main.m */,
+				D748174E1A6042C9004DE98D /* Swoop-Prefix.pch */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -117,6 +174,30 @@
 				D71537E41A55368000E24734 /* Info.plist */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		D748172D1A60368E004DE98D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				D748174C1A6037A9004DE98D /* libxml2.dylib */,
+				D748174A1A60378B004DE98D /* libresolv.dylib */,
+				D74817481A603780004DE98D /* libz.dylib */,
+				D74817461A603776004DE98D /* Security.framework */,
+				D74817441A603772004DE98D /* QuartzCore.framework */,
+				D74817421A60376B004DE98D /* AVFoundation.framework */,
+				D74817401A603766004DE98D /* CoreVideo.framework */,
+				D748173E1A60375E004DE98D /* Accelerate.framework */,
+				D748173C1A603754004DE98D /* CoreMedia.framework */,
+				D748173A1A603750004DE98D /* AudioToolbox.framework */,
+				D74817381A603745004DE98D /* CoreData.framework */,
+				D74817361A603741004DE98D /* CoreLocation.framework */,
+				D74817341A60373C004DE98D /* CoreGraphics.framework */,
+				D74817321A603732004DE98D /* MobileCoreServices.framework */,
+				D74817301A60372D004DE98D /* SystemConfiguration.framework */,
+				D748172E1A60371F004DE98D /* CFNetwork.framework */,
+				D748172B1A603683004DE98D /* Quickblox.framework */,
+			);
+			name = Frameworks;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -201,6 +282,7 @@
 			files = (
 				D71537D51A55367F00E24734 /* Main.storyboard in Resources */,
 				D71537DA1A55367F00E24734 /* LaunchScreen.xib in Resources */,
+				D74817501A604F26004DE98D /* colleges.plist in Resources */,
 				D71537D71A55367F00E24734 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -219,7 +301,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				D71537D21A55367F00E24734 /* ViewController.m in Sources */,
+				D71537D21A55367F00E24734 /* SchoolController.m in Sources */,
 				D71537CF1A55367F00E24734 /* AppDelegate.m in Sources */,
 				D71537CC1A55367F00E24734 /* main.m in Sources */,
 			);
@@ -343,8 +425,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Swoop/Swoop-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = Swoop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+					"-lstdc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Debug;
@@ -353,8 +450,23 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)",
+				);
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Swoop/Swoop-Prefix.pch";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/include,
+					/usr/include/libxml2,
+				);
 				INFOPLIST_FILE = Swoop/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_LDFLAGS = (
+					"-lxml2",
+					"-ObjC",
+					"-lstdc++",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 			};
 			name = Release;
@@ -412,6 +524,7 @@
 				D71537EB1A55368000E24734 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		D71537EC1A55368000E24734 /* Build configuration list for PBXNativeTarget "SwoopTests" */ = {
 			isa = XCConfigurationList;
@@ -420,6 +533,7 @@
 				D71537EE1A55368000E24734 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};
