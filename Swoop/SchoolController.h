@@ -8,10 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface SchoolController : UIViewController <UISearchDisplayDelegate, UITableViewDataSource, UITableViewDelegate>
+@interface SchoolController : UIViewController
 
-@property (nonatomic, strong) NSMutableArray *searchResults;
 @property (nonatomic, strong) NSMutableArray *colleges;
+@property (strong, nonatomic) IBOutlet UITableView *tableView;
 
 @end
 

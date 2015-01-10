@@ -32,6 +32,9 @@
 		D748174B1A60378B004DE98D /* libresolv.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D748174A1A60378B004DE98D /* libresolv.dylib */; };
 		D748174D1A6037A9004DE98D /* libxml2.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = D748174C1A6037A9004DE98D /* libxml2.dylib */; };
 		D74817501A604F26004DE98D /* colleges.plist in Resources */ = {isa = PBXBuildFile; fileRef = D748174F1A604F26004DE98D /* colleges.plist */; };
+		D74817531A605EC8004DE98D /* MainController.m in Sources */ = {isa = PBXBuildFile; fileRef = D74817521A605EC8004DE98D /* MainController.m */; };
+		D74817561A60F88B004DE98D /* colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = D74817541A60F88B004DE98D /* colors.plist */; };
+		D74817571A60F88B004DE98D /* animals.plist in Resources */ = {isa = PBXBuildFile; fileRef = D74817551A60F88B004DE98D /* animals.plist */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -77,6 +80,10 @@
 		D748174C1A6037A9004DE98D /* libxml2.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libxml2.dylib; path = usr/lib/libxml2.dylib; sourceTree = SDKROOT; };
 		D748174E1A6042C9004DE98D /* Swoop-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Swoop-Prefix.pch"; sourceTree = "<group>"; };
 		D748174F1A604F26004DE98D /* colleges.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = colleges.plist; sourceTree = "<group>"; };
+		D74817511A605EB8004DE98D /* MainController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainController.h; sourceTree = "<group>"; };
+		D74817521A605EC8004DE98D /* MainController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainController.m; sourceTree = "<group>"; };
+		D74817541A60F88B004DE98D /* colors.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = colors.plist; sourceTree = "<group>"; };
+		D74817551A60F88B004DE98D /* animals.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = animals.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -140,6 +147,8 @@
 				D71537CE1A55367F00E24734 /* AppDelegate.m */,
 				D71537D01A55367F00E24734 /* SchoolController.h */,
 				D71537D11A55367F00E24734 /* SchoolController.m */,
+				D74817511A605EB8004DE98D /* MainController.h */,
+				D74817521A605EC8004DE98D /* MainController.m */,
 				D71537D31A55367F00E24734 /* Main.storyboard */,
 				D71537D61A55367F00E24734 /* Images.xcassets */,
 				D71537D81A55367F00E24734 /* LaunchScreen.xib */,
@@ -151,6 +160,8 @@
 		D71537C91A55367F00E24734 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D74817541A60F88B004DE98D /* colors.plist */,
+				D74817551A60F88B004DE98D /* animals.plist */,
 				D748174F1A604F26004DE98D /* colleges.plist */,
 				D71537CA1A55367F00E24734 /* Info.plist */,
 				D71537CB1A55367F00E24734 /* main.m */,
@@ -282,6 +293,8 @@
 			files = (
 				D71537D51A55367F00E24734 /* Main.storyboard in Resources */,
 				D71537DA1A55367F00E24734 /* LaunchScreen.xib in Resources */,
+				D74817571A60F88B004DE98D /* animals.plist in Resources */,
+				D74817561A60F88B004DE98D /* colors.plist in Resources */,
 				D74817501A604F26004DE98D /* colleges.plist in Resources */,
 				D71537D71A55367F00E24734 /* Images.xcassets in Resources */,
 			);
@@ -301,6 +314,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D74817531A605EC8004DE98D /* MainController.m in Sources */,
 				D71537D21A55367F00E24734 /* SchoolController.m in Sources */,
 				D71537CF1A55367F00E24734 /* AppDelegate.m in Sources */,
 				D71537CC1A55367F00E24734 /* main.m in Sources */,

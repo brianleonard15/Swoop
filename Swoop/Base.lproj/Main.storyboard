@@ -18,45 +18,76 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                         <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="HtV-dO-ub3">
+                                <rect key="frame" x="27" y="50" width="320" height="568"/>
+                                <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <prototypes>
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="default" accessoryType="disclosureIndicator" indentationWidth="10" reuseIdentifier="CollegeCell" textLabel="R2P-Qd-BjJ" style="IBUITableViewCellStyleDefault" id="3gE-6z-dC8">
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="3gE-6z-dC8" id="vD7-Mm-ixg">
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="R2P-Qd-BjJ">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                    <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="KlB-Za-e84" kind="show" identifier="showSchool" id="VAj-z3-IWd"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                                <connections>
+                                    <outlet property="dataSource" destination="vXZ-lx-hvc" id="aqb-9q-DR3"/>
+                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="IRM-82-ojk"/>
+                                </connections>
+                            </tableView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Select your school" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="8Z6-Ih-6EZ">
                                 <rect key="frame" x="117" y="28" width="142" height="21"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <searchBar contentMode="redraw" translatesAutoresizingMaskIntoConstraints="NO" id="bol-qq-kLs">
-                                <rect key="frame" x="41" y="95" width="295" height="44"/>
-                                <textInputTraits key="textInputTraits"/>
-                                <connections>
-                                    <outlet property="delegate" destination="vXZ-lx-hvc" id="mUf-Oy-XHt"/>
-                                </connections>
-                            </searchBar>
                         </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <color key="backgroundColor" red="0.0" green="0.62260492700000003" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="bol-qq-kLs" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="25" id="IrP-KG-Ogd"/>
+                            <constraint firstItem="HtV-dO-ub3" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="4Zf-D5-YeM"/>
+                            <constraint firstItem="2fi-mo-0CV" firstAttribute="top" secondItem="HtV-dO-ub3" secondAttribute="bottom" constant="49" id="Ig3-Uf-dfC"/>
                             <constraint firstItem="8Z6-Ih-6EZ" firstAttribute="top" secondItem="jyV-Pf-zRb" secondAttribute="bottom" constant="8" symbolic="YES" id="KLh-WV-CH1"/>
                             <constraint firstItem="8Z6-Ih-6EZ" firstAttribute="centerX" secondItem="kh9-bI-dsS" secondAttribute="centerX" id="LQw-pz-H6G"/>
-                            <constraint firstItem="bol-qq-kLs" firstAttribute="top" secondItem="8Z6-Ih-6EZ" secondAttribute="bottom" constant="46" id="P3l-Wq-eO2"/>
-                            <constraint firstItem="bol-qq-kLs" firstAttribute="centerX" secondItem="8Z6-Ih-6EZ" secondAttribute="centerX" id="hcB-kC-Sul"/>
+                            <constraint firstItem="HtV-dO-ub3" firstAttribute="leading" secondItem="kh9-bI-dsS" secondAttribute="leadingMargin" constant="11" id="deY-z1-VJd"/>
+                            <constraint firstItem="HtV-dO-ub3" firstAttribute="top" secondItem="8Z6-Ih-6EZ" secondAttribute="bottom" constant="1" id="tXo-Yu-6d3"/>
                         </constraints>
                     </view>
                     <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
                     <connections>
-                        <outlet property="searchDisplayController" destination="Pgf-Qk-X5T" id="HlU-VB-hU2"/>
+                        <outlet property="tableView" destination="HtV-dO-ub3" id="Bxe-jW-gO7"/>
                     </connections>
                 </viewController>
-                <searchDisplayController id="Pgf-Qk-X5T">
-                    <connections>
-                        <outlet property="delegate" destination="vXZ-lx-hvc" id="4aN-2k-9zP"/>
-                        <outlet property="searchBar" destination="bol-qq-kLs" id="xLc-om-iOv"/>
-                        <outlet property="searchContentsController" destination="vXZ-lx-hvc" id="Nko-Tl-yGM"/>
-                        <outlet property="searchResultsDataSource" destination="vXZ-lx-hvc" id="r4X-1p-aWM"/>
-                        <outlet property="searchResultsDelegate" destination="vXZ-lx-hvc" id="nPH-uM-OR5"/>
-                    </connections>
-                </searchDisplayController>
             </objects>
             <point key="canvasLocation" x="139.5" y="135.5"/>
+        </scene>
+        <!--Main Controller-->
+        <scene sceneID="abP-8P-ZBm">
+            <objects>
+                <viewController id="KlB-Za-e84" customClass="MainController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="Hzu-jH-umv"/>
+                        <viewControllerLayoutGuide type="bottom" id="4CN-9P-m6w"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="J8G-EC-raE">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                    <simulatedScreenMetrics key="simulatedDestinationMetrics" type="retina47"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="zWm-OB-N2f" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="646.5" y="135.5"/>
         </scene>
     </scenes>
 </document>
