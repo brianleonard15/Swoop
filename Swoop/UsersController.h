@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@interface MainController : UIViewController
+@interface UsersController : UIViewController
 
 @property (nonatomic, strong) NSString *college;
 

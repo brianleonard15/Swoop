@@ -6,14 +6,14 @@
 //  Copyright (c) 2015 Brian Leonard. All rights reserved.
 //
 
-#import "MainController.h"
+#import "UsersController.h"
 
-@interface MainController ()
+@interface UsersController ()
 
 
 @end
 
-@implementation MainController
+@implementation UsersController
 
 
 - (void)viewDidLoad {

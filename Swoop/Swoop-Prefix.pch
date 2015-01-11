@@ -19,6 +19,11 @@
 #import <SystemConfiguration/SystemConfiguration.h>
 #import <Quickblox/Quickblox.h>
 
+#import "LocalStorageService.h"
+#import "ChatService.h"
+
 #endif
+
+#define swoopPassword @"73776f6f70"
 
 #endif

@@ -7,12 +7,13 @@
 //
 
 #import "SchoolController.h"
-#import "MainController.h"
+#import "UsersController.h"
 
 @interface SchoolController () <UISearchResultsUpdating, UISearchBarDelegate>
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults; // Filtered search results
+@property(nonatomic, strong) NSString *uuid;
 
 @end
 
@@ -46,6 +47,52 @@
     
     self.definesPresentationContext = YES;
     
+    self.uuid = [[UIDevice currentDevice] identifierForVendor].UUIDString;
+    
+    // QuickBlox session creation
+    QBSessionParameters *extendedAuthRequest = [[QBSessionParameters alloc] init];
+    extendedAuthRequest.userLogin = self.uuid;
+    extendedAuthRequest.userPassword = swoopPassword;
+    //
+    [QBRequest createSessionWithExtendedParameters:extendedAuthRequest successBlock:^(QBResponse *response, QBASession *session) {
+        
+        
+        // Save current user
+        //
+        QBUUser *currentUser = [QBUUser user];
+        currentUser.ID = session.userID;
+        currentUser.login = extendedAuthRequest.userLogin;
+        currentUser.password = extendedAuthRequest.userPassword;
+        //
+        [[LocalStorageService shared] setCurrentUser:currentUser];
+        
+        // Login to QuickBlox Chat
+        //
+        [[ChatService instance] loginWithUser:currentUser completionBlock:^{
+            
+            // hide alert after delay
+            double delayInSeconds = 1.0;
+            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
+            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
+                [self dismissViewControllerAnimated:YES completion:nil];
+            });
+        }];
+        
+        
+        
+    } errorBlock:^(QBResponse *response) {
+        NSString *errorMessage = [[response.error description] stringByReplacingOccurrencesOfString:@"(" withString:@""];
+        errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@")" withString:@""];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
+                                                        message:errorMessage
+                                                       delegate:nil
+                                              cancelButtonTitle:@"Ok"
+                                              otherButtonTitles: nil];
+        [alert show];
+    }];
+
+    
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
@@ -56,7 +103,7 @@
     
     UIViewController *destinationController = segue.destinationViewController;
     NSString *college = [sourceArray[indexPath.row] objectForKey:@"College"];
-    ((MainController *)destinationController).college = college;
+    ((UsersController *)destinationController).college = college;
 }
 
 
