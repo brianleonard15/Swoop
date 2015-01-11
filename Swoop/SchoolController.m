@@ -55,54 +55,115 @@
     self.uuid = [[UIDevice currentDevice] identifierForVendor].UUIDString;
     
     // QuickBlox session creation
-    QBSessionParameters *extendedAuthRequest = [[QBSessionParameters alloc] init];
-    extendedAuthRequest.userLogin = self.uuid;
-    extendedAuthRequest.userPassword = swoopPassword;
-    //
-    [QBRequest createSessionWithExtendedParameters:extendedAuthRequest successBlock:^(QBResponse *response, QBASession *session) {
+    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
+        //Your Quickblox session was created successfully
         
-        
-        // Save current user
-        //
         QBUUser *currentUser = [QBUUser user];
         currentUser.ID = session.userID;
-        currentUser.login = extendedAuthRequest.userLogin;
-        currentUser.password = extendedAuthRequest.userPassword;
-        //
-        [[LocalStorageService shared] setCurrentUser:currentUser];
+        currentUser.login = self.uuid;
+        currentUser.password = swoopPassword;
         
-        // Login to QuickBlox Chat
-        //
-        [[ChatService instance] loginWithUser:currentUser completionBlock:^{
+        [QBRequest userWithLogin:currentUser.login successBlock:^(QBResponse *response, QBUUser *user) {
+            // Successful response with user
+            NSLog(@"User exists");
             
-            [self setLoggedIn:YES];
-            if ([self isSchoolPicked]) {
-                [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-            }
-        
+            [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
+                NSLog(@"Logging in existing User");
+                [self setLoggedIn:YES];
+                if ([self isSchoolPicked]) {
+                    [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+                }
+            } errorBlock:^(QBResponse *response) {
+            }];
+        } errorBlock:^(QBResponse *response) {
+            // User didn't exist
+            NSLog(@"User does not exist");
             
-            // hide alert after delay
-            double delayInSeconds = 1.0;
-            dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
-            dispatch_after(popTime, dispatch_get_main_queue(), ^(void){
-                [self dismissViewControllerAnimated:YES completion:nil];
-            });
+            [QBRequest signUp:currentUser successBlock:^(QBResponse *response, QBUUser *user) {
+                // Sign up was successful
+                NSLog(@"User signed up");
+                
+                [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
+                    NSLog(@"Logging in new User");
+                    [self setLoggedIn:YES];
+                    if ([self isSchoolPicked]) {
+                        [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+                    }
+                } errorBlock:^(QBResponse *response) {
+                }];
+            } errorBlock:^(QBResponse *response) {
+                // Handle error here
+            }];
+            
         }];
-        
-        
-        
     } errorBlock:^(QBResponse *response) {
-        NSString *errorMessage = [[response.error description] stringByReplacingOccurrencesOfString:@"(" withString:@""];
-        errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@")" withString:@""];
-        
-        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
-                                                        message:errorMessage
-                                                       delegate:nil
-                                              cancelButtonTitle:@"Ok"
-                                              otherButtonTitles: nil];
-        [alert show];
+        //Handle error here
     }];
-
+    
+    
+    //    QBSessionParameters *extendedAuthRequest = [[QBSessionParameters alloc] init];
+    //    extendedAuthRequest.userLogin = self.uuid;
+    //    extendedAuthRequest.userPassword = swoopPassword;
+    //    //
+    //    [QBRequest createSessionWithExtendedParameters:extendedAuthRequest successBlock:^(QBResponse *response, QBASession *session) {
+    //
+    //
+    //        // Save current user
+    //        //
+    //        QBUUser *currentUser = [QBUUser user];
+    //        currentUser.ID = session.userID;
+    //        currentUser.login = extendedAuthRequest.userLogin;
+    //        currentUser.password = extendedAuthRequest.userPassword;
+    //        //
+    //        [[LocalStorageService shared] setCurrentUser:currentUser];
+    //
+    //        [[ChatService instance] loginWithUser:currentUser completionBlock:^{
+    //
+    //            [self setLoggedIn:YES];
+    //            if ([self isSchoolPicked]) {
+    //                [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+    //            }
+    //        }];
+    //
+    //
+    //    } errorBlock:^(QBResponse *response) {
+    //
+    //        [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
+    //            //Your Quickblox session was created successfully
+    //        } errorBlock:^(QBResponse *response) {
+    //            //Handle error here
+    //        }];
+    //        // Save current user
+    //        //
+    //        QBUUser *currentUser = [QBUUser user];
+    //        currentUser.login = extendedAuthRequest.userLogin;
+    //        currentUser.password = extendedAuthRequest.userPassword;
+    //        //
+    //        [[LocalStorageService shared] setCurrentUser:currentUser];
+    //        [QBRequest signUp:currentUser successBlock:^(QBResponse *response, QBUUser *user) {
+    //            // Sign up was successful
+    //            [[ChatService instance] loginWithUser:currentUser completionBlock:^{
+    //
+    //                [self setLoggedIn:YES];
+    //                if ([self isSchoolPicked]) {
+    //                    [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+    //                }
+    //            }];
+    //        } errorBlock:^(QBResponse *response) {
+    //            // Handle error here
+    //        }];
+    //
+    //        NSString *errorMessage = [[response.error description] stringByReplacingOccurrencesOfString:@"(" withString:@""];
+    //        errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@")" withString:@""];
+    //
+    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
+    //                                                        message:errorMessage
+    //                                                       delegate:nil
+    //                                              cancelButtonTitle:@"Ok"
+    //                                              otherButtonTitles: nil];
+    //        [alert show];
+    //    }];
+    
     
 }
 

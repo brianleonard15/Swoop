@@ -14,7 +14,6 @@
 		D71537D71A55367F00E24734 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D71537D61A55367F00E24734 /* Images.xcassets */; };
 		D71537DA1A55367F00E24734 /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D71537D81A55367F00E24734 /* LaunchScreen.xib */; };
 		D71537E61A55368000E24734 /* SwoopTests.m in Sources */ = {isa = PBXBuildFile; fileRef = D71537E51A55368000E24734 /* SwoopTests.m */; };
-		D748172C1A603683004DE98D /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748172B1A603683004DE98D /* Quickblox.framework */; };
 		D748172F1A60371F004DE98D /* CFNetwork.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D748172E1A60371F004DE98D /* CFNetwork.framework */; };
 		D74817311A60372D004DE98D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817301A60372D004DE98D /* SystemConfiguration.framework */; };
 		D74817331A603733004DE98D /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D74817321A603732004DE98D /* MobileCoreServices.framework */; };
@@ -37,6 +36,7 @@
 		D74817571A60F88B004DE98D /* animals.plist in Resources */ = {isa = PBXBuildFile; fileRef = D74817551A60F88B004DE98D /* animals.plist */; };
 		D7F34D081A630B2A00C859C5 /* ChatService.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F34D051A630B2A00C859C5 /* ChatService.m */; };
 		D7F34D091A630B2A00C859C5 /* LocalStorageService.m in Sources */ = {isa = PBXBuildFile; fileRef = D7F34D071A630B2A00C859C5 /* LocalStorageService.m */; };
+		D7F34D0E1A63256200C859C5 /* Quickblox.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D7F34D0D1A63256200C859C5 /* Quickblox.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -63,7 +63,6 @@
 		D71537DF1A55368000E24734 /* SwoopTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = SwoopTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		D71537E41A55368000E24734 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D71537E51A55368000E24734 /* SwoopTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SwoopTests.m; sourceTree = "<group>"; };
-		D748172B1A603683004DE98D /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = Quickblox.framework; sourceTree = "<group>"; };
 		D748172E1A60371F004DE98D /* CFNetwork.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CFNetwork.framework; path = System/Library/Frameworks/CFNetwork.framework; sourceTree = SDKROOT; };
 		D74817301A60372D004DE98D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		D74817321A603732004DE98D /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
@@ -90,6 +89,7 @@
 		D7F34D051A630B2A00C859C5 /* ChatService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatService.m; sourceTree = "<group>"; };
 		D7F34D061A630B2A00C859C5 /* LocalStorageService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LocalStorageService.h; sourceTree = "<group>"; };
 		D7F34D071A630B2A00C859C5 /* LocalStorageService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LocalStorageService.m; sourceTree = "<group>"; };
+		D7F34D0D1A63256200C859C5 /* Quickblox.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quickblox.framework; path = "../SDKs/quickblox-ios-sdk-master/Framework/Quickblox.framework"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -105,6 +105,7 @@
 				D74817431A60376B004DE98D /* AVFoundation.framework in Frameworks */,
 				D74817411A603766004DE98D /* CoreVideo.framework in Frameworks */,
 				D748173F1A60375E004DE98D /* Accelerate.framework in Frameworks */,
+				D7F34D0E1A63256200C859C5 /* Quickblox.framework in Frameworks */,
 				D748173D1A603754004DE98D /* CoreMedia.framework in Frameworks */,
 				D748173B1A603750004DE98D /* AudioToolbox.framework in Frameworks */,
 				D74817391A603745004DE98D /* CoreData.framework in Frameworks */,
@@ -113,7 +114,6 @@
 				D74817331A603733004DE98D /* MobileCoreServices.framework in Frameworks */,
 				D74817311A60372D004DE98D /* SystemConfiguration.framework in Frameworks */,
 				D748172F1A60371F004DE98D /* CFNetwork.framework in Frameworks */,
-				D748172C1A603683004DE98D /* Quickblox.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -197,6 +197,7 @@
 		D748172D1A60368E004DE98D /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				D7F34D0D1A63256200C859C5 /* Quickblox.framework */,
 				D748174C1A6037A9004DE98D /* libxml2.dylib */,
 				D748174A1A60378B004DE98D /* libresolv.dylib */,
 				D74817481A603780004DE98D /* libz.dylib */,
@@ -213,7 +214,6 @@
 				D74817321A603732004DE98D /* MobileCoreServices.framework */,
 				D74817301A60372D004DE98D /* SystemConfiguration.framework */,
 				D748172E1A60371F004DE98D /* CFNetwork.framework */,
-				D748172B1A603683004DE98D /* Quickblox.framework */,
 			);
 			name = Frameworks;
 			sourceTree = "<group>";
@@ -462,6 +462,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/Leonard/Desktop/iOS/SDKs/quickblox-ios-sdk-master/Framework",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Swoop/Swoop-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
@@ -487,6 +488,7 @@
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(PROJECT_DIR)",
+					"/Users/Leonard/Desktop/iOS/SDKs/quickblox-ios-sdk-master/Framework",
 				);
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Swoop/Swoop-Prefix.pch";
 				HEADER_SEARCH_PATHS = (
