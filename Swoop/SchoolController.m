@@ -13,7 +13,12 @@
 
 @property (nonatomic, strong) UISearchController *searchController;
 @property (nonatomic, strong) NSMutableArray *searchResults; // Filtered search results
-@property(nonatomic, strong) NSString *uuid;
+@property (nonatomic, strong) NSString *uuid;
+@property (nonatomic, assign, getter=isLoggedIn) BOOL loggedIn;
+@property (nonatomic, assign, getter=isSchoolPicked) BOOL schoolPicked;
+@property (nonatomic, strong) id cellSender;
+@property (nonatomic, strong) NSIndexPath *indexPath;
+@property (nonatomic, strong) NSArray *sourceArray;
 
 @end
 
@@ -70,6 +75,12 @@
         //
         [[ChatService instance] loginWithUser:currentUser completionBlock:^{
             
+            [self setLoggedIn:YES];
+            if ([self isSchoolPicked]) {
+                [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+            }
+        
+            
             // hide alert after delay
             double delayInSeconds = 1.0;
             dispatch_time_t popTime = dispatch_time(DISPATCH_TIME_NOW, (int64_t)(delayInSeconds * NSEC_PER_SEC));
@@ -95,14 +106,18 @@
     
 }
 
+- (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
+    self.cellSender = sender;
+    [self setSchoolPicked:YES];
+    self.indexPath = [self.tableView indexPathForCell:sender];
+    self.sourceArray = self.searchController.active ? self.searchResults : self.colleges;
+    return [self isLoggedIn];
+}
+
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     
-    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
-    
-    NSArray *sourceArray = self.searchController.active ? self.searchResults : self.colleges;
-    
     UIViewController *destinationController = segue.destinationViewController;
-    NSString *college = [sourceArray[indexPath.row] objectForKey:@"College"];
+    NSString *college = [self.sourceArray[self.indexPath.row] objectForKey:@"College"];
     ((UsersController *)destinationController).college = college;
 }
 
