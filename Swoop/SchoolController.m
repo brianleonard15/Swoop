@@ -7,7 +7,7 @@
 //
 
 #import "SchoolController.h"
-#import "UsersController.h"
+#import "DialogsController.h"
 
 @interface SchoolController () <UISearchResultsUpdating, UISearchBarDelegate>
 
@@ -171,13 +171,11 @@
 }
 
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    
-    UIViewController *destinationController = segue.destinationViewController;
     NSString *college = [self.sourceArray[self.indexPath.row] objectForKey:@"College"];
     QBUUser *user = [QBUUser user];
-    user.ID = [LocalStorageService shared].currentUser.ID;
+    user = [LocalStorageService shared].currentUser;
     user.fullName = college;
-    ((UsersController *)destinationController).college = college;
+    [[LocalStorageService shared] setCurrentUser:user];
     [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
         // User updated successfully
         NSLog(@"yay");

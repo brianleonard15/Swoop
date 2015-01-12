@@ -11,6 +11,7 @@
 @interface LocalStorageService : NSObject
 
 @property (nonatomic, strong) QBUUser *currentUser;
+@property (nonatomic, strong) NSString *college;
 @property (nonatomic, strong) NSArray *users;
 @property (nonatomic, readonly) NSDictionary *usersAsDictionary;
 
