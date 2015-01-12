@@ -9,6 +9,7 @@
 #import "UsersController.h"
 #import "UsersPaginator.h"
 #import "DialogsController.h"
+#import "ChatController.h"
 
 @interface UsersController () <UITableViewDelegate, UITableViewDataSource, NMPaginatorDelegate, QBActionStatusDelegate>
 
@@ -87,13 +88,12 @@
     if ([[segue identifier] isEqualToString:@"showChat"]) {
         NSIndexPath *indexPath = [self.usersTableView indexPathForSelectedRow];
         QBUUser *user = self.users[indexPath.row];
-        NSMutableDictionary *extendedRequest = [NSMutableDictionary new];
-        extendedRequest[@"occupants_ids[in]"] = @(user.ID);
-    
-        [QBChat dialogsWithExtendedRequest:extendedRequest delegate:self];
+        int animalID = ((int)user.ID) % self.animals.count;
+        int colorID = ((int)user.ID) % self.colors.count;
+        NSString *alias = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
         ChatController *destinationViewController = (ChatController *)segue.destinationViewController;
-        QBChatDialog *dialog = self.dialogs[0];
-        destinationViewController.dialog = dialog;
+        destinationViewController.user = user;
+        destinationViewController.alias = alias;
     }
 }
 

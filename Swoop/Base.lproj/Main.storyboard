@@ -218,15 +218,55 @@
                         <viewControllerLayoutGuide type="top" id="1KP-8n-4sE"/>
                         <viewControllerLayoutGuide type="bottom" id="x6t-nG-w2V"/>
                     </layoutGuides>
-                    <view key="view" contentMode="scaleToFill" id="KzO-jY-9cM">
+                    <view key="view" contentMode="scaleToFill" id="KrC-b5-hmM">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="U2x-Hl-34f">
+                                <rect key="frame" x="16" y="28" width="343" height="581"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="581" id="kLM-iq-CPD"/>
+                                </constraints>
+                                <connections>
+                                    <outlet property="dataSource" destination="HOA-z7-Yqf" id="MD9-qc-8ZX"/>
+                                    <outlet property="delegate" destination="HOA-z7-Yqf" id="AF6-d5-6SX"/>
+                                </connections>
+                            </tableView>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xs6-US-yQ1">
+                                <rect key="frame" x="16" y="617" width="280" height="30"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits"/>
+                                <connections>
+                                    <outlet property="delegate" destination="HOA-z7-Yqf" id="eGv-Ax-ewW"/>
+                                </connections>
+                            </textField>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Zcu-Vs-uT0">
+                                <rect key="frame" x="304" y="617" width="55" height="30"/>
+                                <state key="normal" title="Send">
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="sendMessage:" destination="HOA-z7-Yqf" eventType="touchUpInside" id="eXT-Q0-fev"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="U2x-Hl-34f" firstAttribute="leading" secondItem="KrC-b5-hmM" secondAttribute="leadingMargin" id="ZPf-rN-upO"/>
+                            <constraint firstItem="U2x-Hl-34f" firstAttribute="trailing" secondItem="KrC-b5-hmM" secondAttribute="trailingMargin" id="ZkY-Xe-PXT"/>
+                            <constraint firstItem="U2x-Hl-34f" firstAttribute="top" secondItem="1KP-8n-4sE" secondAttribute="bottom" constant="8" symbolic="YES" id="bxs-ej-sRh"/>
+                        </constraints>
                     </view>
+                    <nil key="simulatedBottomBarMetrics"/>
+                    <connections>
+                        <outlet property="messageTextField" destination="xs6-US-yQ1" id="68D-9Y-2PD"/>
+                        <outlet property="messagesTableView" destination="U2x-Hl-34f" id="CGu-ij-cwS"/>
+                        <outlet property="sendMessageButton" destination="Zcu-Vs-uT0" id="Ha1-JS-S5t"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="xRO-kj-Rxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1762" y="658"/>
+            <point key="canvasLocation" x="1761.5" y="657.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="y8E-g3-8dT">
