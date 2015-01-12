@@ -181,6 +181,9 @@
                                                 </view>
                                             </subviews>
                                         </tableViewCellContentView>
+                                        <connections>
+                                            <segue destination="HOA-z7-Yqf" kind="show" identifier="showChat" id="Mft-hF-qP7"/>
+                                        </connections>
                                     </tableViewCell>
                                 </prototypes>
                                 <sections/>
@@ -206,6 +209,24 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6x-Fp-cFY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1119.5" y="1011.5"/>
+        </scene>
+        <!--Chat Controller-->
+        <scene sceneID="WLv-3a-yJ5">
+            <objects>
+                <viewController id="HOA-z7-Yqf" customClass="ChatController" sceneMemberID="viewController">
+                    <layoutGuides>
+                        <viewControllerLayoutGuide type="top" id="1KP-8n-4sE"/>
+                        <viewControllerLayoutGuide type="bottom" id="x6t-nG-w2V"/>
+                    </layoutGuides>
+                    <view key="view" contentMode="scaleToFill" id="KzO-jY-9cM">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="xRO-kj-Rxj" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1762" y="658"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="y8E-g3-8dT">

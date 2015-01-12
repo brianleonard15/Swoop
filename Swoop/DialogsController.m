@@ -45,7 +45,6 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    NSLog(@"%i", [self.dialogs count]);
     return [self.dialogs count];
 }
 

@@ -12,6 +12,7 @@
 
 @interface UsersController () <UITableViewDelegate, UITableViewDataSource, NMPaginatorDelegate, QBActionStatusDelegate>
 
+@property (nonatomic, strong) NSMutableArray *dialogs;
 @property (nonatomic, strong) NSMutableArray *users;
 @property (nonatomic, strong) NSMutableArray *animals;
 @property (nonatomic, strong) NSMutableArray *colors;
@@ -61,6 +62,7 @@
 
 - (IBAction)createDialog:(id)sender{
     
+    
     QBChatDialog *chatDialog = [QBChatDialog new];
     
     NSMutableArray *selectedUsersIDs = [NSMutableArray array];
@@ -79,6 +81,20 @@
     }
     
     [QBChat createDialog:chatDialog delegate:self];
+}
+
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showChat"]) {
+        NSIndexPath *indexPath = [self.usersTableView indexPathForSelectedRow];
+        QBUUser *user = self.users[indexPath.row];
+        NSMutableDictionary *extendedRequest = [NSMutableDictionary new];
+        extendedRequest[@"occupants_ids[in]"] = @(user.ID);
+    
+        [QBChat dialogsWithExtendedRequest:extendedRequest delegate:self];
+        ChatController *destinationViewController = (ChatController *)segue.destinationViewController;
+        QBChatDialog *dialog = self.dialogs[0];
+        destinationViewController.dialog = dialog;
+    }
 }
 
 
@@ -187,7 +203,15 @@
 //        
 //        [self.navigationController popViewControllerAnimated:YES];
         
-    }else{
+    }
+    if (result.success && [result isKindOfClass:[QBDialogsPagedResult class]]) {
+        QBDialogsPagedResult *pagedResult = (QBDialogsPagedResult *)result;
+        //
+        NSArray *dialogs = pagedResult.dialogs;
+        self.dialogs = [dialogs mutableCopy];
+        
+    }
+    else{
         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
                                                         message:[[result errors] componentsJoinedByString:@","]
                                                        delegate:nil
@@ -196,6 +220,7 @@
         [alert show];
     }
 }
+
 
 
 #pragma mark
