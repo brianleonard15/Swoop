@@ -200,29 +200,29 @@
 #pragma mark
 #pragma mark Keyboard notifications
 
-- (void)keyboardWillShow:(NSNotification *)note
-{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.messageTextField.transform = CGAffineTransformMakeTranslation(0, -215);
-        self.sendMessageButton.transform = CGAffineTransformMakeTranslation(0, -215);
-        self.messagesTableView.frame = CGRectMake(self.messagesTableView.frame.origin.x,
-                                                  self.messagesTableView.frame.origin.y,
-                                                  self.messagesTableView.frame.size.width,
-                                                  self.messagesTableView.frame.size.height-219);
-    }];
-}
-
-- (void)keyboardWillHide:(NSNotification *)note
-{
-    [UIView animateWithDuration:0.3 animations:^{
-        self.messageTextField.transform = CGAffineTransformIdentity;
-        self.sendMessageButton.transform = CGAffineTransformIdentity;
-        self.messagesTableView.frame = CGRectMake(self.messagesTableView.frame.origin.x,
-                                                  self.messagesTableView.frame.origin.y,
-                                                  self.messagesTableView.frame.size.width,
-                                                  self.messagesTableView.frame.size.height+219);
-    }];
-}
+//- (void)keyboardWillShow:(NSNotification *)note
+//{
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.messageTextField.transform = CGAffineTransformMakeTranslation(0, -215);
+//        self.sendMessageButton.transform = CGAffineTransformMakeTranslation(0, -215);
+//        self.messagesTableView.frame = CGRectMake(self.messagesTableView.frame.origin.x,
+//                                                  self.messagesTableView.frame.origin.y,
+//                                                  self.messagesTableView.frame.size.width,
+//                                                  self.messagesTableView.frame.size.height-219);
+//    }];
+//}
+//
+//- (void)keyboardWillHide:(NSNotification *)note
+//{
+//    [UIView animateWithDuration:0.3 animations:^{
+//        self.messageTextField.transform = CGAffineTransformIdentity;
+//        self.sendMessageButton.transform = CGAffineTransformIdentity;
+//        self.messagesTableView.frame = CGRectMake(self.messagesTableView.frame.origin.x,
+//                                                  self.messagesTableView.frame.origin.y,
+//                                                  self.messagesTableView.frame.size.width,
+//                                                  self.messagesTableView.frame.size.height+219);
+//    }];
+//}
 
 
 #pragma mark -
