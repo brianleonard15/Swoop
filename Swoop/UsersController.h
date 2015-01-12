@@ -8,10 +8,8 @@
 
 #import <UIKit/UIKit.h>
 
-@interface DialogsController : UIViewController
+@interface UsersController : UIViewController
 
-@property (strong, nonatomic) QBChatDialog *createdDialog;
-@property (strong, nonatomic) IBOutlet UILabel *schoolLabel;
 
 @end
 

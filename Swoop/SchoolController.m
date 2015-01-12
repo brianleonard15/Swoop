@@ -54,59 +54,7 @@
     
     self.uuid = [[UIDevice currentDevice] identifierForVendor].UUIDString;
     
-    [self loginWithLogin:self.uuid password:swoopPassword];
-    
-    //    // QuickBlox session creation
-    //    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
-    //        //Your Quickblox session was created successfully
-    //
-    //        QBUUser *currentUser = [QBUUser user];
-    //        currentUser.ID = session.userID;
-    //        currentUser.login = self.uuid;
-    //        currentUser.password = swoopPassword;
-    //        currentUser.externalUserID = session.userID;
-    //        [[LocalStorageService shared] setCurrentUser:currentUser];
-    //        NSLog(@"%i", session.userID);
-    //        NSLog(@"%i", currentUser.ID);
-    //        NSLog(@"%i", currentUser.externalUserID);
-    //
-    //        [QBRequest userWithLogin:currentUser.login successBlock:^(QBResponse *response, QBUUser *user) {
-    //            // Successful response with user
-    //            NSLog(@"User exists");
-    //
-    //            [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
-    //                NSLog(@"Logging in existing User");
-    //                [self setLoggedIn:YES];
-    //                if ([self isSchoolPicked]) {
-    //                    [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-    //                }
-    //            } errorBlock:^(QBResponse *response) {
-    //            }];
-    //        } errorBlock:^(QBResponse *response) {
-    //            // User didn't exist
-    //            NSLog(@"User does not exist");
-    //
-    //            [QBRequest signUp:currentUser successBlock:^(QBResponse *response, QBUUser *user) {
-    //                // Sign up was successful
-    //                NSLog(@"User signed up");
-    //
-    //                [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
-    //                    NSLog(@"Logging in new User");
-    //                    [self setLoggedIn:YES];
-    //                    if ([self isSchoolPicked]) {
-    //                        [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-    //                    }
-    //                } errorBlock:^(QBResponse *response) {
-    //                }];
-    //            } errorBlock:^(QBResponse *response) {
-    //                // Handle error here
-    //            }];
-    //
-    //        }];
-    //    } errorBlock:^(QBResponse *response) {
-    //        //Handle error here
-    //    }];
-    
+    [self loginWithLogin:self.uuid password:swoopPassword];    
     
 }
 
@@ -173,9 +121,12 @@
 -(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     NSString *college = [self.sourceArray[self.indexPath.row] objectForKey:@"College"];
     QBUUser *user = [QBUUser user];
-    user = [LocalStorageService shared].currentUser;
+    user.ID = [LocalStorageService shared].currentUser.ID;
     user.fullName = college;
-    [[LocalStorageService shared] setCurrentUser:user];
+    QBUUser *storeUser = [QBUUser user];
+    storeUser = [LocalStorageService shared].currentUser;
+    storeUser.fullName = college;
+    [[LocalStorageService shared] setCurrentUser:storeUser];
     [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
         // User updated successfully
         NSLog(@"yay");
@@ -189,7 +140,6 @@
 #pragma mark - UITableViewDataSource
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    
     if (self.searchController.active) {
         return [self.searchResults count];
     } else {
