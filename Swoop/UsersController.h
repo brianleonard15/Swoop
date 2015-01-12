@@ -11,6 +11,8 @@
 @interface UsersController : UIViewController
 
 @property (nonatomic, strong) NSString *college;
+@property (strong, nonatomic) QBChatDialog *createdDialog;
+@property (strong, nonatomic) IBOutlet UILabel *schoolLabel;
 
 @end
 

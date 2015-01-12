@@ -54,55 +54,112 @@
     
     self.uuid = [[UIDevice currentDevice] identifierForVendor].UUIDString;
     
+    [self loginWithLogin:self.uuid password:swoopPassword];
+    
+    //    // QuickBlox session creation
+    //    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
+    //        //Your Quickblox session was created successfully
+    //
+    //        QBUUser *currentUser = [QBUUser user];
+    //        currentUser.ID = session.userID;
+    //        currentUser.login = self.uuid;
+    //        currentUser.password = swoopPassword;
+    //        currentUser.externalUserID = session.userID;
+    //        [[LocalStorageService shared] setCurrentUser:currentUser];
+    //        NSLog(@"%i", session.userID);
+    //        NSLog(@"%i", currentUser.ID);
+    //        NSLog(@"%i", currentUser.externalUserID);
+    //
+    //        [QBRequest userWithLogin:currentUser.login successBlock:^(QBResponse *response, QBUUser *user) {
+    //            // Successful response with user
+    //            NSLog(@"User exists");
+    //
+    //            [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
+    //                NSLog(@"Logging in existing User");
+    //                [self setLoggedIn:YES];
+    //                if ([self isSchoolPicked]) {
+    //                    [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+    //                }
+    //            } errorBlock:^(QBResponse *response) {
+    //            }];
+    //        } errorBlock:^(QBResponse *response) {
+    //            // User didn't exist
+    //            NSLog(@"User does not exist");
+    //
+    //            [QBRequest signUp:currentUser successBlock:^(QBResponse *response, QBUUser *user) {
+    //                // Sign up was successful
+    //                NSLog(@"User signed up");
+    //
+    //                [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
+    //                    NSLog(@"Logging in new User");
+    //                    [self setLoggedIn:YES];
+    //                    if ([self isSchoolPicked]) {
+    //                        [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+    //                    }
+    //                } errorBlock:^(QBResponse *response) {
+    //                }];
+    //            } errorBlock:^(QBResponse *response) {
+    //                // Handle error here
+    //            }];
+    //
+    //        }];
+    //    } errorBlock:^(QBResponse *response) {
+    //        //Handle error here
+    //    }];
+    
+    
+}
+
+- (void)loginWithLogin:(NSString *)login password:(NSString *)password {
     // QuickBlox session creation
-    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
-        //Your Quickblox session was created successfully
+    QBSessionParameters *extendedAuthRequest = [[QBSessionParameters alloc] init];
+    extendedAuthRequest.userLogin = login;
+    extendedAuthRequest.userPassword = password;
+    
+    [QBRequest createSessionWithExtendedParameters:extendedAuthRequest successBlock:^(QBResponse *response, QBASession *session) {
         
+        NSLog(@"User exists");
+        
+        // Save current user
+        //
         QBUUser *currentUser = [QBUUser user];
         currentUser.ID = session.userID;
-        currentUser.login = self.uuid;
-        currentUser.password = swoopPassword;
-        currentUser.externalUserID = session.userID;
+        currentUser.login = login;
+        currentUser.password = password;
+        //
         [[LocalStorageService shared] setCurrentUser:currentUser];
         
-        [QBRequest userWithLogin:currentUser.login successBlock:^(QBResponse *response, QBUUser *user) {
-            // Successful response with user
-            NSLog(@"User exists");
-            
-            [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
-                NSLog(@"Logging in existing User");
-                [self setLoggedIn:YES];
-                if ([self isSchoolPicked]) {
-                    [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-                }
-            } errorBlock:^(QBResponse *response) {
-            }];
+        // Login to QuickBlox Chat
+        //
+        [[ChatService instance] loginWithUser:currentUser completionBlock:^{
+            NSLog(@"Logging in existing User");
+            [self setLoggedIn:YES];
+            if ([self isSchoolPicked]) {
+                [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
+            }
+        }];
+        
+        
+        
+    } errorBlock:^(QBResponse *response) {
+        NSLog(@"signing up");
+        [self signupWithLogin:login password:password];
+    }];
+}
+
+- (void)signupWithLogin:(NSString *)login password:(NSString *)password {
+    [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
+        QBUUser *user = [QBUUser user];
+        user.login = login;
+        user.password = password;
+        [QBRequest signUp:user successBlock:^(QBResponse *response, QBUUser *user) {
+            NSLog(@"sign up successful");
+            [self loginWithLogin:login password:password];
         } errorBlock:^(QBResponse *response) {
-            // User didn't exist
-            NSLog(@"User does not exist");
-            
-            [QBRequest signUp:currentUser successBlock:^(QBResponse *response, QBUUser *user) {
-                // Sign up was successful
-                NSLog(@"User signed up");
-                
-                [QBRequest logInWithUserLogin:currentUser.login password:currentUser.password successBlock:^(QBResponse *response, QBUUser *user) {
-                    NSLog(@"Logging in new User");
-                    [self setLoggedIn:YES];
-                    if ([self isSchoolPicked]) {
-                        [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-                    }
-                } errorBlock:^(QBResponse *response) {
-                }];
-            } errorBlock:^(QBResponse *response) {
-                // Handle error here
-            }];
-            
+            NSLog(@"couldn't sign up");
         }];
     } errorBlock:^(QBResponse *response) {
-        //Handle error here
     }];
-    
-    
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
@@ -118,17 +175,16 @@
     UIViewController *destinationController = segue.destinationViewController;
     NSString *college = [self.sourceArray[self.indexPath.row] objectForKey:@"College"];
     QBUUser *user = [QBUUser user];
-    user.ID = [LocalStorageService shared].currentUser.externalUserID;
-    NSLog(@"%i", user.ID);
-    user.tags = [NSMutableArray arrayWithObjects:college, nil];
-        [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
-            // User updated successfully
-            ((UsersController *)destinationController).college = college;
-            NSLog(@"yay");
-        } errorBlock:^(QBResponse *response) {
-            // Handle error
-            NSLog(@"uhoh");
-        }];
+    user.ID = [LocalStorageService shared].currentUser.ID;
+    user.fullName = college;
+    ((UsersController *)destinationController).college = college;
+    [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
+        // User updated successfully
+        NSLog(@"yay");
+    } errorBlock:^(QBResponse *response) {
+        // Handle error
+        NSLog(@"uhoh");
+    }];
 }
 
 
