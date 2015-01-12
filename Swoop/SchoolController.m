@@ -62,6 +62,8 @@
         currentUser.ID = session.userID;
         currentUser.login = self.uuid;
         currentUser.password = swoopPassword;
+        currentUser.externalUserID = session.userID;
+        [[LocalStorageService shared] setCurrentUser:currentUser];
         
         [QBRequest userWithLogin:currentUser.login successBlock:^(QBResponse *response, QBUUser *user) {
             // Successful response with user
@@ -101,70 +103,6 @@
     }];
     
     
-    //    QBSessionParameters *extendedAuthRequest = [[QBSessionParameters alloc] init];
-    //    extendedAuthRequest.userLogin = self.uuid;
-    //    extendedAuthRequest.userPassword = swoopPassword;
-    //    //
-    //    [QBRequest createSessionWithExtendedParameters:extendedAuthRequest successBlock:^(QBResponse *response, QBASession *session) {
-    //
-    //
-    //        // Save current user
-    //        //
-    //        QBUUser *currentUser = [QBUUser user];
-    //        currentUser.ID = session.userID;
-    //        currentUser.login = extendedAuthRequest.userLogin;
-    //        currentUser.password = extendedAuthRequest.userPassword;
-    //        //
-    //        [[LocalStorageService shared] setCurrentUser:currentUser];
-    //
-    //        [[ChatService instance] loginWithUser:currentUser completionBlock:^{
-    //
-    //            [self setLoggedIn:YES];
-    //            if ([self isSchoolPicked]) {
-    //                [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-    //            }
-    //        }];
-    //
-    //
-    //    } errorBlock:^(QBResponse *response) {
-    //
-    //        [QBRequest createSessionWithSuccessBlock:^(QBResponse *response, QBASession *session) {
-    //            //Your Quickblox session was created successfully
-    //        } errorBlock:^(QBResponse *response) {
-    //            //Handle error here
-    //        }];
-    //        // Save current user
-    //        //
-    //        QBUUser *currentUser = [QBUUser user];
-    //        currentUser.login = extendedAuthRequest.userLogin;
-    //        currentUser.password = extendedAuthRequest.userPassword;
-    //        //
-    //        [[LocalStorageService shared] setCurrentUser:currentUser];
-    //        [QBRequest signUp:currentUser successBlock:^(QBResponse *response, QBUUser *user) {
-    //            // Sign up was successful
-    //            [[ChatService instance] loginWithUser:currentUser completionBlock:^{
-    //
-    //                [self setLoggedIn:YES];
-    //                if ([self isSchoolPicked]) {
-    //                    [self performSegueWithIdentifier:@"showSchool" sender:self.cellSender];
-    //                }
-    //            }];
-    //        } errorBlock:^(QBResponse *response) {
-    //            // Handle error here
-    //        }];
-    //
-    //        NSString *errorMessage = [[response.error description] stringByReplacingOccurrencesOfString:@"(" withString:@""];
-    //        errorMessage = [errorMessage stringByReplacingOccurrencesOfString:@")" withString:@""];
-    //
-    //        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Errors"
-    //                                                        message:errorMessage
-    //                                                       delegate:nil
-    //                                              cancelButtonTitle:@"Ok"
-    //                                              otherButtonTitles: nil];
-    //        [alert show];
-    //    }];
-    
-    
 }
 
 - (BOOL)shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender {
@@ -179,7 +117,18 @@
     
     UIViewController *destinationController = segue.destinationViewController;
     NSString *college = [self.sourceArray[self.indexPath.row] objectForKey:@"College"];
-    ((UsersController *)destinationController).college = college;
+    QBUUser *user = [QBUUser user];
+    user.ID = [LocalStorageService shared].currentUser.externalUserID;
+    NSLog(@"%i", user.ID);
+    user.tags = [NSMutableArray arrayWithObjects:college, nil];
+        [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
+            // User updated successfully
+            ((UsersController *)destinationController).college = college;
+            NSLog(@"yay");
+        } errorBlock:^(QBResponse *response) {
+            // Handle error
+            NSLog(@"uhoh");
+        }];
 }
 
 
