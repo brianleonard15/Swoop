@@ -147,10 +147,9 @@
     int colorID = ((int)user.ID) % self.colors.count;
     userLabel.text = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
     
-    NSLog(@"%i", self.animals.count);
-    NSLog(@"%i", self.colors.count);
-    
-    
+    UIView *greenCircle = (UIView *)[cell viewWithTag:101];
+    greenCircle.layer.cornerRadius = (greenCircle.bounds.size.height/2);
+
     return cell;
 }
 

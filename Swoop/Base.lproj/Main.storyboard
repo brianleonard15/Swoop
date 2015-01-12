@@ -170,11 +170,15 @@
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHA-U3-Jhb">
-                                                    <rect key="frame" x="29" y="12" width="244" height="21"/>
+                                                    <rect key="frame" x="31" y="12" width="244" height="21"/>
                                                     <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                     <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <view tag="101" contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="kic-Wj-gEF">
+                                                    <rect key="frame" x="10" y="16" width="13" height="13"/>
+                                                    <color key="backgroundColor" red="0.0" green="0.93225364960000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                </view>
                                             </subviews>
                                         </tableViewCellContentView>
                                     </tableViewCell>
@@ -201,7 +205,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="H6x-Fp-cFY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1119.5" y="1013.5"/>
+            <point key="canvasLocation" x="1119.5" y="1011.5"/>
         </scene>
         <!--Tab Bar Controller-->
         <scene sceneID="y8E-g3-8dT">
