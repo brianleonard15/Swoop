@@ -46,14 +46,25 @@
     /**
      *  You MUST set your senderId and display name
      */
-    self.senderId = [[NSNumber numberWithInteger:self.user.ID] stringValue];
-    self.senderDisplayName = self.alias;
+    self.senderId = [[NSNumber numberWithInteger:[LocalStorageService shared].currentUser.ID] stringValue];
+    self.senderDisplayName = @"You";
     
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
     
     
     self.showLoadEarlierMessagesHeader = YES;
+    
+    /**
+     *  Create message bubble images objects.
+     *
+     *  Be sure to create your bubble images one time and reuse them for good performance.
+     *
+     */
+    JSQMessagesBubbleImageFactory *bubbleFactory = [[JSQMessagesBubbleImageFactory alloc] init];
+    
+    self.outgoingBubbleImageData = [bubbleFactory outgoingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleLightGrayColor]];
+    self.incomingBubbleImageData = [bubbleFactory incomingMessagesBubbleImageWithColor:[UIColor jsq_messageBubbleGreenColor]];
 }
 
 
@@ -77,30 +88,6 @@
 
 
 
-#pragma mark
-#pragma mark Actions
-
-- (IBAction)sendMessage:(id)sender{
-    
-    
-    // create a message
-    QBChatMessage *message = [[QBChatMessage alloc] init];
-    message.text = self.messageTextField.text;
-    NSMutableDictionary *params = [NSMutableDictionary dictionary];
-    params[@"save_to_history"] = @YES;
-    [message setCustomParameters:params];
-    
-    // send message
-    message.recipientID = [self.dialog recipientID];
-    message.senderID = [LocalStorageService shared].currentUser.ID;
-    
-    [[ChatService instance] sendMessage:message];
-    
-    // save message
-    [self.messages addObject:message];
-    
-}
-
 
 
 
@@ -121,6 +108,7 @@
         //
         NSArray *dialogs = pagedResult.dialogs;
         self.dialog = dialogs[0];
+        
         [QBChat messagesWithDialogID:self.dialog.ID extendedRequest:nil delegate:self];
         NSLog(@"00000000000000000000000000000000000000");
         
@@ -129,9 +117,7 @@
         QBChatHistoryMessageResult *res = (QBChatHistoryMessageResult *)result;
         NSArray *messages = res.messages;
         [self.messages addObjectsFromArray:[messages mutableCopy]];
-        [self.messagesTableView reloadData];
-        [self.messagesTableView scrollToRowAtIndexPath:[NSIndexPath indexPathForRow:self.messages.count-1 inSection:0] atScrollPosition:UITableViewScrollPositionBottom animated:NO];
-        NSLog(@"---------------------------------");
+        [self.collectionView reloadData];
     }
     else{
         NSLog(@"11111111111111111111111111111");
@@ -170,18 +156,16 @@
         return;
     }
     
-    // save message
-    [self.messages addObject:message];
     
     
     
-    /**
-     *  Copy last sent message, this will be the new "received" message
-     */
-    JSQMessage *receivedMessage = [JSQMessage messageWithSenderId:
-                                   [[NSNumber numberWithInteger:message.senderID] stringValue]
-                                                      displayName:self.alias
-                                                             text:message.text];
+//    /**
+//     *  Copy last sent message, this will be the new "received" message
+//     */
+//    JSQMessage *receivedMessage = [JSQMessage messageWithSenderId:
+//                                   [[NSNumber numberWithInteger:message.senderID] stringValue]
+//                                                      displayName:self.alias
+//                                                             text:message.text];
     
     /**
      *  Allow typing indicator to show
@@ -197,7 +181,8 @@
          *  3. Call `finishReceivingMessage`
          */
         [JSQSystemSoundPlayer jsq_playMessageReceivedSound];
-        //[self.demoData.messages addObject:newMessage];
+        // save message
+        [self.messages addObject:message];
         [self finishReceivingMessageAnimated:YES];
         
         
@@ -226,12 +211,20 @@
      */
     [JSQSystemSoundPlayer jsq_playMessageSentSound];
     
-    JSQMessage *message = [[JSQMessage alloc] initWithSenderId:senderId
-                                             senderDisplayName:senderDisplayName
-                                                          date:date
-                                                          text:text];
+    // create a message
+    QBChatMessage *message = [[QBChatMessage alloc] init];
+    message.text = text;
+    NSMutableDictionary *params = [NSMutableDictionary dictionary];
+    params[@"save_to_history"] = @YES;
+    [message setCustomParameters:params];
     
-    [self.demoData.messages addObject:message];
+    // send message
+    message.recipientID = self.user.ID;
+    message.senderID = [LocalStorageService shared].currentUser.ID;
+    
+    [[ChatService instance] sendMessage:message];
+    
+    [self.messages addObject:message];
     
     [self finishSendingMessageAnimated:YES];
 }
@@ -243,7 +236,21 @@
 
 - (id<JSQMessageData>)collectionView:(JSQMessagesCollectionView *)collectionView messageDataForItemAtIndexPath:(NSIndexPath *)indexPath
 {
-    return [self.demoData.messages objectAtIndex:indexPath.item];
+    QBChatMessage *message = [self.messages objectAtIndex:indexPath.item];
+    NSString *displayName;
+    if (message.senderID == self.user.ID) {
+        displayName = self.alias;
+    }
+    else {
+        displayName = @"You";
+    }
+
+    JSQMessage *jsqMessage = [JSQMessage messageWithSenderId:
+                                       [[NSNumber numberWithInteger:message.senderID] stringValue]
+                                                          displayName:displayName
+                                                                 text:message.text];
+
+    return jsqMessage;
 }
 
 - (id<JSQMessageBubbleImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView messageBubbleImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -255,13 +262,13 @@
      *  Otherwise, return your previously created bubble image data objects.
      */
     
-    JSQMessage *message = [self.demoData.messages objectAtIndex:indexPath.item];
-    
-    if ([message.senderId isEqualToString:self.senderId]) {
-        return self.demoData.outgoingBubbleImageData;
+    QBChatMessage *message = [self.messages objectAtIndex:indexPath.item];
+
+    if (message.senderID == self.user.ID) {
+        return self.incomingBubbleImageData;
     }
     
-    return self.demoData.incomingBubbleImageData;
+    return self.outgoingBubbleImageData;
 }
 
 - (id<JSQMessageAvatarImageDataSource>)collectionView:(JSQMessagesCollectionView *)collectionView avatarImageDataForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -278,8 +285,8 @@
      *  Show a timestamp for every 3rd message
      */
     if (indexPath.item % 3 == 0) {
-        JSQMessage *message = [self.demoData.messages objectAtIndex:indexPath.item];
-        return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.date];
+        QBChatMessage *message = [self.messages objectAtIndex:indexPath.item];
+        return [[JSQMessagesTimestampFormatter sharedFormatter] attributedTimestampForDate:message.datetime];
     }
     
     return nil;
@@ -287,18 +294,18 @@
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForMessageBubbleTopLabelAtIndexPath:(NSIndexPath *)indexPath
 {
-    JSQMessage *message = [self.demoData.messages objectAtIndex:indexPath.item];
+    QBChatMessage *message = [self.messages objectAtIndex:indexPath.item];
     
     /**
      *  iOS7-style sender name labels
      */
-    if ([message.senderId isEqualToString:self.senderId]) {
+    if (message.senderID != self.user.ID) {
         return nil;
     }
     
     if (indexPath.item - 1 > 0) {
-        JSQMessage *previousMessage = [self.demoData.messages objectAtIndex:indexPath.item - 1];
-        if ([[previousMessage senderId] isEqualToString:message.senderId]) {
+        QBChatMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
+        if (previousMessage.senderID == message.senderID) {
             return nil;
         }
     }
@@ -306,7 +313,7 @@
     /**
      *  Don't specify attributes to use the defaults.
      */
-    return [[NSAttributedString alloc] initWithString:message.senderDisplayName];
+    return [[NSAttributedString alloc] initWithString:self.alias];
 }
 
 - (NSAttributedString *)collectionView:(JSQMessagesCollectionView *)collectionView attributedTextForCellBottomLabelAtIndexPath:(NSIndexPath *)indexPath
@@ -318,7 +325,7 @@
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section
 {
-    return [self.demoData.messages count];
+    return [self.messages count];
 }
 
 - (UICollectionViewCell *)collectionView:(JSQMessagesCollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath
@@ -342,13 +349,13 @@
      *  Instead, override the properties you want on `self.collectionView.collectionViewLayout` from `viewDidLoad`
      */
     
-    JSQMessage *msg = [self.demoData.messages objectAtIndex:indexPath.item];
+    QBChatMessage *msg = [self.messages objectAtIndex:indexPath.item];
 
-        if ([msg.senderId isEqualToString:self.senderId]) {
-            cell.textView.textColor = [UIColor blackColor];
+        if (msg.senderID == self.user.ID) {
+            cell.textView.textColor = [UIColor whiteColor];
         }
         else {
-            cell.textView.textColor = [UIColor whiteColor];
+            cell.textView.textColor = [UIColor blackColor];
         }
         
         cell.textView.linkTextAttributes = @{ NSForegroundColorAttributeName : cell.textView.textColor,
@@ -390,14 +397,14 @@
     /**
      *  iOS7-style sender name labels
      */
-    JSQMessage *currentMessage = [self.demoData.messages objectAtIndex:indexPath.item];
-    if ([[currentMessage senderId] isEqualToString:self.senderId]) {
+    QBChatMessage *currentMessage = [self.messages objectAtIndex:indexPath.item];
+    if (currentMessage.senderID != self.user.ID) {
         return 0.0f;
     }
     
     if (indexPath.item - 1 > 0) {
-        JSQMessage *previousMessage = [self.demoData.messages objectAtIndex:indexPath.item - 1];
-        if ([[previousMessage senderId] isEqualToString:[currentMessage senderId]]) {
+        QBChatMessage *previousMessage = [self.messages objectAtIndex:indexPath.item - 1];
+        if (previousMessage.senderID == currentMessage.senderID) {
             return 0.0f;
         }
     }

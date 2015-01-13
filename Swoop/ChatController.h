@@ -27,9 +27,12 @@
 @property (nonatomic, strong) QBUUser *user;
 @property (nonatomic, strong) NSString *alias;
 
+@property (strong, nonatomic) JSQMessagesBubbleImage *outgoingBubbleImageData;
+
+@property (strong, nonatomic) JSQMessagesBubbleImage *incomingBubbleImageData;
+
 @property (weak, nonatomic) id<JSQDemoViewControllerDelegate> delegateModal;
 
-@property (strong, nonatomic) DemoModelData *demoData;
 
 
 @end

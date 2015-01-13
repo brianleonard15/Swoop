@@ -5,6 +5,19 @@
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
     <scenes>
+        <!--Navigation Controller-->
+        <scene sceneID="khx-gF-Qtc">
+            <objects>
+                <navigationController id="EQf-Ej-FjH" sceneMemberID="viewController">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="jm1-px-46o">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="UYe-Os-ECG" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="-594" y="144"/>
+        </scene>
         <!--School Controller-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
@@ -229,7 +242,7 @@
         <!--Chat Controller-->
         <scene sceneID="beJ-6D-WFR">
             <objects>
-                <viewController id="uuK-KJ-U8f" customClass="ChatController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ChatController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="uuK-KJ-U8f" customClass="ChatController" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="ktf-eh-4L3"/>
                         <viewControllerLayoutGuide type="bottom" id="Zk5-q9-j3f"/>

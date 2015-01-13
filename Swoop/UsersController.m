@@ -91,7 +91,8 @@
         int animalID = ((int)user.ID) % self.animals.count;
         int colorID = ((int)user.ID) % self.colors.count;
         NSString *alias = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
-        ChatController *destinationViewController = (ChatController *)segue.destinationViewController;
+        ChatController *destinationViewController = [[[segue destinationViewController] viewControllers] objectAtIndex:0];
+        
         destinationViewController.user = user;
         destinationViewController.alias = alias;
     }
