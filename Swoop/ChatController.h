@@ -7,11 +7,29 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "JSQMessages.h"
 
-@interface ChatController : UIViewController
+
+@class ChatController;
+
+@protocol JSQDemoViewControllerDelegate <NSObject>
+
+- (void)didDismissJSQDemoViewController:(ChatController *)vc;
+
+@end
+
+
+
+
+@interface ChatController : JSQMessagesViewController <UIActionSheetDelegate>
 
 @property (nonatomic, strong) QBChatDialog *dialog;
 @property (nonatomic, strong) QBUUser *user;
 @property (nonatomic, strong) NSString *alias;
+
+@property (weak, nonatomic) id<JSQDemoViewControllerDelegate> delegateModal;
+
+@property (strong, nonatomic) DemoModelData *demoData;
+
 
 @end
