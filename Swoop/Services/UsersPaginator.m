@@ -14,13 +14,13 @@
 
 @implementation UsersPaginator
 
-- (void)fetchResultsWithPage:(NSInteger)page pageSize:(NSInteger)pageSize
+- (void)fetchResultsWithFullName:(NSString *)userFullName page:(NSInteger)page pageSize:(NSInteger)pageSize
 {
     // Retrieve QuickBlox users
     // 10 users per page
     //
     QBGeneralResponsePage *responsePage = [QBGeneralResponsePage responsePageWithCurrentPage:page perPage:pageSize];
-    [QBRequest usersForPage:responsePage successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
+    [QBRequest usersWithFullName:userFullName page:responsePage successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
         
         [self receivedResults:users total:page.totalEntries];
         
@@ -29,3 +29,4 @@
     }];
 }
 @end
+

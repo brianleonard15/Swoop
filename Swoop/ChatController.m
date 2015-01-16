@@ -81,7 +81,7 @@
     
     // get messages history
     NSMutableDictionary *extendedRequest = [NSMutableDictionary new];
-    extendedRequest[@"occupants_ids[in]"] = @(self.user.ID);
+    extendedRequest[@"recipient_id[all]"] = @(self.user.ID);
     
     [QBChat dialogsWithExtendedRequest:extendedRequest delegate:self];
 }

@@ -58,7 +58,7 @@
     [self setupTableViewFooter];
     
     // Fetch 10 users
-    [self.paginator fetchFirstPage];
+    [self.paginator fetchFirstPageWithFullName:[LocalStorageService shared].currentUser.fullName];
 }
 
 - (IBAction)createDialog:(id)sender{
@@ -102,9 +102,9 @@
 #pragma mark
 #pragma mark Paginator
 
-- (void)fetchNextPage
+- (void)fetchNextPageWithFullName:(NSString *)fullName
 {
-    [self.paginator fetchNextPage];
+    [self.paginator fetchNextPageWithFullName:fullName];
     [self.activityIndicator startAnimating];
 }
 
@@ -183,7 +183,7 @@
         // ask next page only if we haven't reached last page
         if(![self.paginator reachedLastPage]){
             // fetch next page of results
-            [self fetchNextPage];
+            [self fetchNextPageWithFullName:[LocalStorageService shared].currentUser.fullName];
         }
     }
 }

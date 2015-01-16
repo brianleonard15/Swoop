@@ -61,15 +61,15 @@
 
 # pragma - fetch results
 
-- (void)fetchFirstPage
+- (void)fetchFirstPageWithFullName:(NSString *)fullName
 {     
     // reset paginator
     [self reset];
     
-    [self fetchNextPage];
+    [self fetchNextPageWithFullName:fullName];
 }
 
-- (void)fetchNextPage
+- (void)fetchNextPageWithFullName:(NSString *)fullName
 {    
     // don't do anything if there's already a request in progress
     if(self.requestStatus == RequestStatusInProgress) 
@@ -77,13 +77,13 @@
     
     if(![self reachedLastPage]) {
         self.requestStatus = RequestStatusInProgress;
-        [self fetchResultsWithPage:self.page+1 pageSize:self.pageSize];
+        [self fetchResultsWithFullName:fullName page:self.page+1 pageSize:self.pageSize];
     }
 }
 
 #pragma mark - Sublclass methods
 
-- (void)fetchResultsWithPage:(NSInteger)page pageSize:(NSInteger)pageSize
+- (void)fetchResultsWithFullName:(NSString *)userFullName page:(NSInteger)page pageSize:(NSInteger)pageSize
 {
     // override this in subclass
 }

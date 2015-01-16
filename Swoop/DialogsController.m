@@ -11,6 +11,7 @@
 @interface DialogsController () <UITableViewDelegate, UITableViewDataSource, QBActionStatusDelegate>
 
 @property (nonatomic, strong) NSMutableArray *dialogs;
+@property (nonatomic, strong) NSDictionary *dialogDict;
 @property (nonatomic, weak) IBOutlet UITableView *dialogsTableView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
 @property (nonatomic, strong) NSMutableArray *animals;
@@ -45,7 +46,9 @@
         [self.activityIndicator startAnimating];
         
         // get dialogs
-        [QBChat dialogsWithExtendedRequest:nil delegate:self];
+        NSMutableDictionary *extendedRequest = [NSMutableDictionary new];
+        extendedRequest[@"sort_desc"] = @"last_message_date_sent";
+        [QBChat dialogsWithExtendedRequest:extendedRequest delegate:self];
     }
 }
 
@@ -106,21 +109,20 @@
         NSArray *dialogs = pagedResult.dialogs;
         self.dialogs = [dialogs mutableCopy];
         
+        NSArray *recipientIDs = [self.dialogs valueForKeyPath:@"recipientID"];
+        
         QBGeneralResponsePage *pagedRequest = [QBGeneralResponsePage responsePageWithCurrentPage:0 perPage:100];
-        //
-        NSSet *dialogsUsersIDs = pagedResult.dialogsUsersIDs;
-        //
-        NSLog(@"helloooooo");
-        [QBRequest usersWithIDs:[dialogsUsersIDs allObjects] page:pagedRequest successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
+        
+        [QBRequest usersWithIDs:recipientIDs page:pagedRequest successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
             
             [LocalStorageService shared].users = users;
-            //
+            
+            [LocalStorageService shared].dialogDictionary = [NSDictionary dictionaryWithObjects:self.dialogs forKeys:users];
+            
             [self.dialogsTableView reloadData];
-            NSLog(@"heeeeerre");
             [self.activityIndicator stopAnimating];
             
         } errorBlock:nil];
-        
     }
 }
 
