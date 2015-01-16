@@ -13,6 +13,8 @@
 @property (nonatomic, strong) NSMutableArray *dialogs;
 @property (nonatomic, weak) IBOutlet UITableView *dialogsTableView;
 @property (nonatomic, weak) IBOutlet UIActivityIndicatorView *activityIndicator;
+@property (nonatomic, strong) NSMutableArray *animals;
+@property (nonatomic, strong) NSMutableArray *colors;
 
 
 @end
@@ -24,6 +26,15 @@
     
     [super viewDidLoad];
     self.schoolLabel.text = [LocalStorageService shared].currentUser.fullName;
+    // Path to the plist (in the application bundle)
+    NSString *animalPath = [[NSBundle mainBundle] pathForResource:
+                            @"animals" ofType:@"plist"];
+    NSString *colorPath = [[NSBundle mainBundle] pathForResource:
+                           @"colors" ofType:@"plist"];
+    
+    // Build the array from the plist
+    self.animals = [[[NSMutableArray alloc] initWithContentsOfFile:animalPath]valueForKey:@"Animal"];
+    self.colors = [[[NSMutableArray alloc] initWithContentsOfFile:colorPath]valueForKey:@"Color"];
     
 }
 
@@ -55,10 +66,24 @@
     QBChatDialog *chatDialog = self.dialogs[indexPath.row];
     cell.tag  = indexPath.row;
     
-    QBUUser *recipient = [LocalStorageService shared].usersAsDictionary[@(chatDialog.recipientID)];
-    
+    NSInteger recipientID = chatDialog.recipientID;
+    //QBUUser *recipient = [LocalStorageService shared].usersAsDictionary[@(chatDialog.recipientID)];
     UILabel *userLabel = (UILabel *)[cell viewWithTag:100];
-    userLabel.text = recipient.login == nil ? recipient.email : recipient.login;
+    int animalID = ((int)recipientID) % self.animals.count;
+    int colorID = ((int)recipientID) % self.colors.count;
+    userLabel.text = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
+    
+    UILabel *snippetLabel = (UILabel *)[cell viewWithTag:101];
+    snippetLabel.text = chatDialog.lastMessageText;
+    
+    UILabel *dateLabel = (UILabel *)[cell viewWithTag:102];
+    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+    [dateFormatter setDateFormat:@"dd-MM HH:mm"];
+    NSString *dateString = [dateFormatter stringFromDate:chatDialog.lastMessageDate];
+    dateLabel.text = dateString;
+    
+    
+    
 
     
     return cell;
@@ -85,11 +110,13 @@
         //
         NSSet *dialogsUsersIDs = pagedResult.dialogsUsersIDs;
         //
+        NSLog(@"helloooooo");
         [QBRequest usersWithIDs:[dialogsUsersIDs allObjects] page:pagedRequest successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
             
             [LocalStorageService shared].users = users;
             //
             [self.dialogsTableView reloadData];
+            NSLog(@"heeeeerre");
             [self.activityIndicator stopAnimating];
             
         } errorBlock:nil];
