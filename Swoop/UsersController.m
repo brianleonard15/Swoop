@@ -53,6 +53,8 @@
 - (void)viewWillAppear:(BOOL)animated{
     [super viewWillAppear:animated];
     
+    self.users = [NSMutableArray array];
+    
     [self.activityIndicator startAnimating];
     
     [self setupTableViewFooter];
@@ -95,6 +97,7 @@
         
         destinationViewController.user = user;
         destinationViewController.alias = alias;
+
     }
 }
 
@@ -170,7 +173,10 @@
     return cell;
 }
 
-
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    [tableView deselectRowAtIndexPath:indexPath animated:YES];
+}
 
 
 #pragma mark

@@ -59,17 +59,17 @@
 
 -(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return [self.dialogs count];
+    return [[LocalStorageService shared].users count];
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"DialogCell"];
     
-    QBChatDialog *chatDialog = self.dialogs[indexPath.row];
     cell.tag  = indexPath.row;
-    
-    NSInteger recipientID = chatDialog.recipientID;
+    QBUUser *recipientUser = [LocalStorageService shared].users[indexPath.row];
+    QBChatDialog *chatDialog = [LocalStorageService shared].dialogDictionary[recipientUser];
+    NSInteger recipientID = recipientUser.ID;
     //QBUUser *recipient = [LocalStorageService shared].usersAsDictionary[@(chatDialog.recipientID)];
     UILabel *userLabel = (UILabel *)[cell viewWithTag:100];
     int animalID = ((int)recipientID) % self.animals.count;
@@ -115,9 +115,16 @@
         
         [QBRequest usersWithIDs:recipientIDs page:pagedRequest successBlock:^(QBResponse *response, QBGeneralResponsePage *page, NSArray *users) {
             
-            [LocalStorageService shared].users = users;
+            
             
             [LocalStorageService shared].dialogDictionary = [NSDictionary dictionaryWithObjects:self.dialogs forKeys:users];
+            NSLog(@"asdfkljasdfkajklsdfkjlasdfkjlasdfkjlasdflkjaskdlfjasdfljkasdfkjaksdjlfkjalsdfkljadskfljkladsfjklakldsfadksfkljasdkjlfjkasdkflljkadskfkadsflkadjksljkd %@", [LocalStorageService shared].dialogDictionary);
+            
+            NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF.fullName == %@",[LocalStorageService shared].currentUser.fullName];
+            
+            NSArray *filteredArray = [users filteredArrayUsingPredicate:predicate];
+            [LocalStorageService shared].users = filteredArray;
+            
             
             [self.dialogsTableView reloadData];
             [self.activityIndicator stopAnimating];
