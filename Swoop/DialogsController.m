@@ -7,6 +7,8 @@
 //
 
 #import "DialogsController.h"
+#import "NSDate+NVTimeAgo.h"
+#import "ChatController.h"
 
 @interface DialogsController () <UITableViewDelegate, UITableViewDataSource, QBActionStatusDelegate>
 
@@ -52,6 +54,20 @@
     }
 }
 
+-(void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    if ([[segue identifier] isEqualToString:@"showChat"]) {
+        NSIndexPath *indexPath = [self.dialogsTableView indexPathForSelectedRow];
+        QBUUser *user = [LocalStorageService shared].users[indexPath.row];
+        int animalID = ((int)user.ID) % self.animals.count;
+        int colorID = ((int)user.ID) % self.colors.count;
+        NSString *alias = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
+        ChatController *destinationViewController = [segue destinationViewController];
+        
+        destinationViewController.user = user;
+        destinationViewController.alias = alias;
+        
+    }
+}
 
 
 #pragma mark
@@ -80,9 +96,7 @@
     snippetLabel.text = chatDialog.lastMessageText;
     
     UILabel *dateLabel = (UILabel *)[cell viewWithTag:102];
-    NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-    [dateFormatter setDateFormat:@"dd-MM HH:mm"];
-    NSString *dateString = [dateFormatter stringFromDate:chatDialog.lastMessageDate];
+    NSString *dateString = [chatDialog.lastMessageDate formattedAsTimeAgo];
     dateLabel.text = dateString;
     
     

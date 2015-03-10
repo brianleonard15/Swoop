@@ -34,6 +34,7 @@
 		D74817531A605EC8004DE98D /* DialogsController.m in Sources */ = {isa = PBXBuildFile; fileRef = D74817521A605EC8004DE98D /* DialogsController.m */; };
 		D74817561A60F88B004DE98D /* colors.plist in Resources */ = {isa = PBXBuildFile; fileRef = D74817541A60F88B004DE98D /* colors.plist */; };
 		D74817571A60F88B004DE98D /* animals.plist in Resources */ = {isa = PBXBuildFile; fileRef = D74817551A60F88B004DE98D /* animals.plist */; };
+		D76B48791A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.m in Sources */ = {isa = PBXBuildFile; fileRef = D76B48781A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.m */; };
 		D79A69681A63AFC40004419B /* UsersController.m in Sources */ = {isa = PBXBuildFile; fileRef = D79A69671A63AFC40004419B /* UsersController.m */; };
 		D79A696E1A63B6110004419B /* NMPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = D79A696D1A63B6110004419B /* NMPaginator.m */; };
 		D79A69711A63B61E0004419B /* UsersPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = D79A69701A63B61E0004419B /* UsersPaginator.m */; };
@@ -133,6 +134,8 @@
 		D74817521A605EC8004DE98D /* DialogsController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DialogsController.m; sourceTree = "<group>"; };
 		D74817541A60F88B004DE98D /* colors.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = colors.plist; sourceTree = "<group>"; };
 		D74817551A60F88B004DE98D /* animals.plist */ = {isa = PBXFileReference; lastKnownFileType = file.bplist; path = animals.plist; sourceTree = "<group>"; };
+		D76B48771A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSDate+NVTimeAgo.h"; sourceTree = "<group>"; };
+		D76B48781A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSDate+NVTimeAgo.m"; sourceTree = "<group>"; };
 		D79A69661A63AFB40004419B /* UsersController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = UsersController.h; sourceTree = "<group>"; };
 		D79A69671A63AFC40004419B /* UsersController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersController.m; sourceTree = "<group>"; };
 		D79A696C1A63B6110004419B /* NMPaginator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NMPaginator.h; sourceTree = "<group>"; };
@@ -553,6 +556,8 @@
 				D7F34D051A630B2A00C859C5 /* ChatService.m */,
 				D7F34D061A630B2A00C859C5 /* LocalStorageService.h */,
 				D7F34D071A630B2A00C859C5 /* LocalStorageService.m */,
+				D76B48771A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.h */,
+				D76B48781A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.m */,
 				D79A696F1A63B61E0004419B /* UsersPaginator.h */,
 				D79A69701A63B61E0004419B /* UsersPaginator.m */,
 				D79A696C1A63B6110004419B /* NMPaginator.h */,
@@ -725,6 +730,7 @@
 				D7D0B2741A64C2150037080A /* JSQMessagesCollectionViewCellIncoming.m in Sources */,
 				D71537CC1A55367F00E24734 /* main.m in Sources */,
 				D7F34D091A630B2A00C859C5 /* LocalStorageService.m in Sources */,
+				D76B48791A6AD5F200B6F3F2 /* NSDate+NVTimeAgo.m in Sources */,
 				D7D0B2701A64C2150037080A /* JSQVideoMediaItem.m in Sources */,
 				D7D0B26A1A64C2150037080A /* JSQLocationMediaItem.m in Sources */,
 				D79A69711A63B61E0004419B /* UsersPaginator.m in Sources */,
