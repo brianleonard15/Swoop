@@ -9,7 +9,7 @@
 #import <UIKit/UIKit.h>
 
 @interface UsersController : UIViewController
-
+@property (strong, nonatomic) IBOutlet UILabel *schoolLabel;
 
 @end
 

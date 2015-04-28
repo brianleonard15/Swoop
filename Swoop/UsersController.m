@@ -30,10 +30,19 @@
 
 #pragma mark
 #pragma mark ViewController lyfe cycle
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.backgroundColor = [UIColor clearColor];
+}
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault]; //UIImageNamed:@"transparent.png"
+    self.navigationController.navigationBar.shadowImage = [UIImage new];////UIImageNamed:@"transparent.png"
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
+    self.schoolLabel.text = [LocalStorageService shared].currentUser.fullName;
     
     // Path to the plist (in the application bundle)
     NSString *animalPath = [[NSBundle mainBundle] pathForResource:
@@ -167,7 +176,7 @@
     int colorID = ((int)user.ID) % self.colors.count;
     userLabel.text = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
     
-    UIView *greenCircle = (UIView *)[cell viewWithTag:101];
+    UIImageView *greenCircle = (UIImageView *)[cell viewWithTag:101];
     greenCircle.layer.cornerRadius = (greenCircle.bounds.size.height/2);
 
     return cell;

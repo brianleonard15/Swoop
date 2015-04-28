@@ -23,11 +23,19 @@
 @end
 
 @implementation DialogsController
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.backgroundColor = [UIColor clearColor];
+}
 
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+    [self.navigationController.navigationBar setBackgroundImage:[UIImage new]
+                                                  forBarMetrics:UIBarMetricsDefault]; //UIImageNamed:@"transparent.png"
+    self.navigationController.navigationBar.shadowImage = [UIImage new];////UIImageNamed:@"transparent.png"
+    self.navigationController.navigationBar.translucent = YES;
+    self.navigationController.view.backgroundColor = [UIColor clearColor];
     self.schoolLabel.text = [LocalStorageService shared].currentUser.fullName;
     // Path to the plist (in the application bundle)
     NSString *animalPath = [[NSBundle mainBundle] pathForResource:

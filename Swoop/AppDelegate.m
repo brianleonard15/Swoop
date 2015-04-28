@@ -25,6 +25,10 @@
     [QBConnection registerServiceKey:@"RpuP8gbgbRLf3EH"];
     [QBConnection registerServiceSecret:@"RZSMHBryBDuaMpm"];
     [QBSettings setAccountKey:@"ESNqqzHrGdWb3iwapocg"];
+    [[UITabBar appearance] setBarTintColor:[UIColor clearColor]];
+    [[UITabBar appearance] setBackgroundImage:[UIImage new]];
+    [[UITabBar appearance] setBackgroundColor:[UIColor clearColor]];
+    [[UITabBar appearance] setShadowImage:[[UIImage alloc] init]];
     return YES;
 }
 

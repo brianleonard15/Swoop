@@ -39,6 +39,10 @@
 		D79A696E1A63B6110004419B /* NMPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = D79A696D1A63B6110004419B /* NMPaginator.m */; };
 		D79A69711A63B61E0004419B /* UsersPaginator.m in Sources */ = {isa = PBXBuildFile; fileRef = D79A69701A63B61E0004419B /* UsersPaginator.m */; };
 		D79A69771A6452CA0004419B /* ChatController.m in Sources */ = {isa = PBXBuildFile; fileRef = D79A69761A6452CA0004419B /* ChatController.m */; };
+		D79AE1601AEF7E3E0083E29A /* freebie.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D79AE15F1AEF7E3E0083E29A /* freebie.jpg */; };
+		D79AE1621AEF94B90083E29A /* Green-Circle.jpg in Resources */ = {isa = PBXBuildFile; fileRef = D79AE1611AEF94B90083E29A /* Green-Circle.jpg */; };
+		D79AE1641AEF99460083E29A /* message-7.png in Resources */ = {isa = PBXBuildFile; fileRef = D79AE1631AEF99460083E29A /* message-7.png */; };
+		D79AE1661AEF9ACC0083E29A /* user_male_2-32.png in Resources */ = {isa = PBXBuildFile; fileRef = D79AE1651AEF9ACC0083E29A /* user_male_2-32.png */; };
 		D7D0B2571A64C2150037080A /* JSQMessagesAssets.bundle in Resources */ = {isa = PBXBuildFile; fileRef = D7D0B1EC1A64C2150037080A /* JSQMessagesAssets.bundle */; };
 		D7D0B2581A64C2150037080A /* JSQMessages.strings in Resources */ = {isa = PBXBuildFile; fileRef = D7D0B1EE1A64C2150037080A /* JSQMessages.strings */; };
 		D7D0B2591A64C2150037080A /* JSQSystemSoundPlayer+JSQMessages.m in Sources */ = {isa = PBXBuildFile; fileRef = D7D0B2001A64C2150037080A /* JSQSystemSoundPlayer+JSQMessages.m */; };
@@ -144,6 +148,10 @@
 		D79A69701A63B61E0004419B /* UsersPaginator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = UsersPaginator.m; sourceTree = "<group>"; };
 		D79A69751A6452900004419B /* ChatController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ChatController.h; sourceTree = "<group>"; };
 		D79A69761A6452CA0004419B /* ChatController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ChatController.m; sourceTree = "<group>"; };
+		D79AE15F1AEF7E3E0083E29A /* freebie.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = freebie.jpg; sourceTree = "<group>"; };
+		D79AE1611AEF94B90083E29A /* Green-Circle.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "Green-Circle.jpg"; sourceTree = "<group>"; };
+		D79AE1631AEF99460083E29A /* message-7.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "message-7.png"; sourceTree = "<group>"; };
+		D79AE1651AEF9ACC0083E29A /* user_male_2-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "user_male_2-32.png"; sourceTree = "<group>"; };
 		D7D0B1EC1A64C2150037080A /* JSQMessagesAssets.bundle */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.plug-in"; path = JSQMessagesAssets.bundle; sourceTree = "<group>"; };
 		D7D0B1EF1A64C2150037080A /* Base */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = Base; path = Base.lproj/JSQMessages.strings; sourceTree = "<group>"; };
 		D7D0B1F01A64C2150037080A /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/JSQMessages.strings; sourceTree = "<group>"; };
@@ -331,6 +339,10 @@
 		D71537C91A55367F00E24734 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				D79AE1651AEF9ACC0083E29A /* user_male_2-32.png */,
+				D79AE1631AEF99460083E29A /* message-7.png */,
+				D79AE1611AEF94B90083E29A /* Green-Circle.jpg */,
+				D79AE15F1AEF7E3E0083E29A /* freebie.jpg */,
 				D74817541A60F88B004DE98D /* colors.plist */,
 				D74817551A60F88B004DE98D /* animals.plist */,
 				D748174F1A604F26004DE98D /* colleges.plist */,
@@ -659,6 +671,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				D79AE1601AEF7E3E0083E29A /* freebie.jpg in Resources */,
 				D71537D51A55367F00E24734 /* Main.storyboard in Resources */,
 				D7D0B2811A64C2150037080A /* JSQMessagesTypingIndicatorFooterView.xib in Resources */,
 				D7D0B2581A64C2150037080A /* JSQMessages.strings in Resources */,
@@ -668,11 +681,14 @@
 				D74817571A60F88B004DE98D /* animals.plist in Resources */,
 				D74817561A60F88B004DE98D /* colors.plist in Resources */,
 				D7D0B2771A64C2150037080A /* JSQMessagesCollectionViewCellOutgoing.xib in Resources */,
+				D79AE1641AEF99460083E29A /* message-7.png in Resources */,
 				D7D0B2751A64C2150037080A /* JSQMessagesCollectionViewCellIncoming.xib in Resources */,
 				D74817501A604F26004DE98D /* colleges.plist in Resources */,
+				D79AE1661AEF9ACC0083E29A /* user_male_2-32.png in Resources */,
 				D71537D71A55367F00E24734 /* Images.xcassets in Resources */,
 				D7D0B27F1A64C2150037080A /* JSQMessagesToolbarContentView.xib in Resources */,
 				D7D0B27C1A64C2150037080A /* JSQMessagesLoadEarlierHeaderView.xib in Resources */,
+				D79AE1621AEF94B90083E29A /* Green-Circle.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -892,6 +908,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = Swoop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-lxml2",
@@ -918,6 +935,7 @@
 					/usr/include/libxml2,
 				);
 				INFOPLIST_FILE = Swoop/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				OTHER_LDFLAGS = (
 					"-lxml2",

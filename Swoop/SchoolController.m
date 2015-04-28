@@ -23,14 +23,21 @@
 @end
 
 @implementation SchoolController
-
+- (void)tableView:(UITableView *)tableView willDisplayCell:(UITableViewCell *)cell forRowAtIndexPath:(NSIndexPath *)indexPath {
+    
+    cell.backgroundColor = [UIColor clearColor];
+}
 - (void)viewDidLoad {
     
     [super viewDidLoad];
+
     
     // Path to the plist (in the application bundle)
     NSString *path = [[NSBundle mainBundle] pathForResource:
                       @"colleges" ofType:@"plist"];
+    
+    [self.tableView setBackgroundView:nil];
+    
     
     // Build the array from the plist
     self.colleges = [[NSMutableArray alloc] initWithContentsOfFile:path];
