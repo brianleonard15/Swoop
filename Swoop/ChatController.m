@@ -51,6 +51,9 @@
     
     self.collectionView.collectionViewLayout.incomingAvatarViewSize = CGSizeZero;
     self.collectionView.collectionViewLayout.outgoingAvatarViewSize = CGSizeZero;
+    self.collectionView.backgroundColor = [UIColor clearColor];
+    [self.collectionView setBackgroundView:[[UIImageView alloc] initWithImage:[UIImage imageNamed:@"freebie.jpg"]]];
+    
     
     
     self.showLoadEarlierMessagesHeader = YES;
