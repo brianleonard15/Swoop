@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="7702" systemVersion="14D136" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="EQf-Ej-FjH">
     <dependencies>
+        <development version="6200" identifier="xcode"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="7701"/>
         <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
     </dependencies>
@@ -218,44 +219,36 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView userInteractionEnabled="NO" alpha="0.75" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="freebie.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="ezr-Pa-WP0">
-                                <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                                <rect key="frame" x="0.0" y="0.0" width="1680" height="1050"/>
                             </imageView>
-                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNN-b9-QR4">
+                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nNN-b9-QR4">
                                 <rect key="frame" x="166" y="323" width="42" height="21"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="42" id="bo7-gf-ckF"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wo1-ws-ikq">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="45" sectionHeaderHeight="22" sectionFooterHeight="22" translatesAutoresizingMaskIntoConstraints="NO" id="wo1-ws-ikq">
                                 <rect key="frame" x="16" y="64" width="343" height="554"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="tintColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <color key="sectionIndexBackgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 <prototypes>
-                                    <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" id="CZ7-k1-wpW">
+                                    <tableViewCell contentMode="scaleToFill" selectionStyle="gray" accessoryType="disclosureIndicator" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="UserCell" textLabel="csr-4n-zmE" style="IBUITableViewCellStyleDefault" id="CZ7-k1-wpW">
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="CZ7-k1-wpW" id="q0Z-jn-Eer">
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <label opaque="NO" userInteractionEnabled="NO" tag="100" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lHA-U3-Jhb">
-                                                    <rect key="frame" x="19" y="12" width="244" height="21"/>
-                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                <label opaque="NO" multipleTouchEnabled="YES" tag="100" contentMode="left" text="Title" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="csr-4n-zmE">
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                     <color key="textColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView userInteractionEnabled="NO" tag="101" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" ambiguous="YES" misplaced="YES" translatesAutoresizingMaskIntoConstraints="NO" id="bDw-rY-s6m">
-                                                    <rect key="frame" x="311" y="18" width="10" height="10"/>
-                                                    <color key="backgroundColor" red="0.0" green="0.93225364960000001" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
-                                                </imageView>
                                             </subviews>
-                                            <constraints>
-                                                <constraint firstAttribute="centerY" secondItem="bDw-rY-s6m" secondAttribute="centerY" constant="-1" id="Eu8-XA-vGh"/>
-                                                <constraint firstAttribute="trailingMargin" secondItem="bDw-rY-s6m" secondAttribute="trailing" constant="14" id="FPe-oo-659"/>
-                                                <constraint firstItem="bDw-rY-s6m" firstAttribute="leading" secondItem="q0Z-jn-Eer" secondAttribute="leadingMargin" constant="303" id="IKk-6H-STS"/>
-                                                <constraint firstItem="lHA-U3-Jhb" firstAttribute="leading" secondItem="q0Z-jn-Eer" secondAttribute="leadingMargin" constant="11" id="Orq-D3-SRP"/>
-                                                <constraint firstAttribute="centerY" secondItem="lHA-U3-Jhb" secondAttribute="centerY" constant="-0.5" id="i1I-BN-WrB"/>
-                                            </constraints>
                                         </tableViewCellContentView>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         <connections>
@@ -271,6 +264,15 @@
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="nNN-b9-QR4" firstAttribute="centerX" secondItem="wo1-ws-ikq" secondAttribute="centerX" id="5lF-Ck-gpI"/>
+                            <constraint firstItem="wo1-ws-ikq" firstAttribute="leading" secondItem="eef-6B-Obi" secondAttribute="leadingMargin" id="CSP-ij-eXd"/>
+                            <constraint firstItem="wo1-ws-ikq" firstAttribute="bottom" secondItem="AGJ-kK-7XZ" secondAttribute="top" id="RPa-Px-6hB"/>
+                            <constraint firstItem="wo1-ws-ikq" firstAttribute="trailing" secondItem="eef-6B-Obi" secondAttribute="trailingMargin" id="YQA-YM-m7S"/>
+                            <constraint firstItem="nNN-b9-QR4" firstAttribute="centerY" secondItem="eef-6B-Obi" secondAttribute="centerY" id="kde-C0-Su8"/>
+                            <constraint firstItem="nNN-b9-QR4" firstAttribute="top" secondItem="01m-qa-bxo" secondAttribute="bottom" constant="259" id="mnS-7i-7Dd"/>
+                            <constraint firstItem="wo1-ws-ikq" firstAttribute="top" secondItem="01m-qa-bxo" secondAttribute="bottom" id="rPB-Bt-VjX"/>
+                        </constraints>
                     </view>
                     <tabBarItem key="tabBarItem" title="Users" image="user_male_2-32.png" id="vSh-ja-a7Z"/>
                     <connections>
