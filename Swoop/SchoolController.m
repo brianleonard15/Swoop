@@ -91,6 +91,7 @@
         currentUser.ID = session.userID;
         currentUser.login = login;
         currentUser.password = password;
+        currentUser.customData = @"online";
         //
         [[LocalStorageService shared] setCurrentUser:currentUser];
         
@@ -117,6 +118,7 @@
         QBUUser *user = [QBUUser user];
         user.login = login;
         user.password = password;
+        user.customData = @"online";
         [QBRequest signUp:user successBlock:^(QBResponse *response, QBUUser *user) {
             NSLog(@"sign up successful");
             [self loginWithLogin:login password:password];
@@ -140,9 +142,11 @@
     QBUUser *user = [QBUUser user];
     user.ID = [LocalStorageService shared].currentUser.ID;
     user.fullName = college;
+    user.customData = @"online";
     QBUUser *storeUser = [QBUUser user];
     storeUser = [LocalStorageService shared].currentUser;
     storeUser.fullName = college;
+    storeUser.customData = @"online";
     [[LocalStorageService shared] setCurrentUser:storeUser];
     [QBRequest updateUser:user successBlock:^(QBResponse *response, QBUUser *user) {
         // User updated successfully

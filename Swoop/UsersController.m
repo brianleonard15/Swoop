@@ -176,8 +176,12 @@
     int colorID = ((int)user.ID) % self.colors.count;
     userLabel.text = [NSString stringWithFormat:@"%@ %@", self.colors[colorID], self.animals[animalID]];
     
-    UIImageView *greenCircle = (UIImageView *)[cell viewWithTag:101];
-    greenCircle.layer.cornerRadius = (greenCircle.bounds.size.height/2);
+    UIImageView *onlineCircle = (UIImageView *)[cell viewWithTag:101];
+    onlineCircle.layer.cornerRadius = (onlineCircle.bounds.size.height/2);
+    onlineCircle.backgroundColor = [UIColor grayColor];
+    if ([user.customData isEqualToString:@"online"]) {
+        onlineCircle.backgroundColor = [UIColor greenColor];
+    }
 
     return cell;
 }
